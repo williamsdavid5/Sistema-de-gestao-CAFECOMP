@@ -1,0 +1,97 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif, arial;
+}
+
+button:hover,
+.imagemBotao:hover,
+.textoBotao:hover {
+    transform: scale(1.02);
+}
+
+button:active,
+.imagemBotao:active,
+.textoBotao:active {
+    transform: scale(0.98);
+}
+
+button {
+    border: none;
+    border-radius: 60px;
+    transition: transform 0.2s;
+}
+
+.textoBotao {
+    text-decoration: none;
+}
+
+/*configurações globais dos menus superior e lateral*/
+#menuSuperior {
+    background-color: #002C69;
+    display: flex;
+    width: 100%;
+    height: 80px;
+    align-items: center;
+    position: fixed;
+}
+
+#menuSuperior .textoBotao {
+    color: white;
+    font-weight: bold;
+    margin: 0px 20px;
+}
+
+#menuLateralIcon,
+#menuLateralIcon2 {
+    width: 30px;
+    height: auto;
+    object-fit: contain;
+    padding-left: 20px;
+    margin: 0px 20px;
+}
+
+#menuSuperior #cafecompLogo {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    margin-left: auto;
+    padding: 20px;
+}
+
+#menuLateral {
+    background-color: #002C69;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: auto;
+    position: absolute;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+#menuLateral.show {
+    transform: translateX(0);
+}
+
+#menuLateral .textoBotao {
+    color: white;
+    font-weight: bold;
+    padding: 20px 20px;
+    margin: 0px 20px;
+    display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#menuLateral a:last-child {
+    border-bottom: none;
+}
+
+#menuLateral #menuLateralIcon2 {
+    padding-top: 20px;
+}

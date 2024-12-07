@@ -1,9 +1,3 @@
-html,
-body {
-    margin: 0;
-    padding: 0;
-}
-
 body {
     background-image: url("../img/background-login.png");
     background-repeat: no-repeat;
@@ -13,8 +7,6 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-
-    font-family: sans-serif, arial;
 }
 
 #janelaDeLogin {
@@ -51,10 +43,7 @@ body {
 #janelaDeLogin button {
     width: 342px;
     height: 42px;
-    border: none;
-    border-radius: 60px;
     margin: 7px 5px;
-    transition: transform 0.2s;
 }
 
 #botaoEntrar {
@@ -65,12 +54,4 @@ body {
 a {
     color: white;
     margin: 7px 5px;
-}
-
-button:hover {
-    transform: scale(1.02);
-}
-
-button:active {
-    transform: scale(0.98);
 }
