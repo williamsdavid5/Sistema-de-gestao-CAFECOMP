@@ -1,0 +1,82 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("../img/background-login.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    font-family: sans-serif, arial;
+}
+
+#janelaDeLogin {
+    background-color: #002C69;
+    border-radius: 15px;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#janelaDeLogin img {
+    width: 230px;
+    height: auto;
+    object-fit: contain;
+}
+
+.textoSimples {
+    color: white;
+    margin: 5px;
+}
+
+.textoBold {
+    color: white;
+    font-weight: bold;
+    margin: 5px;
+}
+
+#janelaDeLogin input {
+    border: none;
+    margin: 7px 5px;
+    border-radius: 60px;
+    width: 320px;
+    height: 40px;
+    padding: 0px 20px;
+}
+
+#janelaDeLogin button {
+    width: 342px;
+    height: 42px;
+    border: none;
+    border-radius: 60px;
+    margin: 7px 5px;
+    transition: transform 0.2s;
+}
+
+#botaoConfirmar {
+    background: black;
+    color: white;
+}
+
+a {
+    color: white;
+    margin: 7px 5px;
+}
+
+button:hover {
+    transform: scale(1.02);
+}
+
+button:active {
+    transform: scale(0.98);
+}

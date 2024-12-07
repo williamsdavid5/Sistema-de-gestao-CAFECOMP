@@ -56,3 +56,9 @@ botaoRedefinirSenha.addEventListener('click', async (e) => {
         alert("Erro ao enviar email de redefinição de senha: " + error.message);
     }
 });
+
+const botaoCadastro = document.getElementById('botaoNaoPossuoUmaConta');
+
+botaoCadastro.addEventListener('click', () => {
+    window.location.href = 'cadastro.html'
+});
