@@ -69,7 +69,7 @@ button {
     flex-direction: column;
     height: 100%;
     width: auto;
-    position: absolute;
+    position: fixed;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
