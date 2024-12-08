@@ -5,4 +5,5 @@ class Chamado:
         self.descricao = descricao
         self.user = user
         self.data_public = data_public
+        self.status = 0
     
