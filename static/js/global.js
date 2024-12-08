@@ -4,7 +4,7 @@ const menuLateralIcon2 = document.getElementById('menuLateralIcon2');
 const menuLateral = document.getElementById('menuLateral');
 
 menuLateralIcon.addEventListener('click', () => {
-    menuLateral.classList.add('show');
+    menuLateral.classList.toggle('show');
 });
 
 menuLateralIcon2.addEventListener('click', () => {

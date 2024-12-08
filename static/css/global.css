@@ -8,6 +8,13 @@ body {
     font-family: sans-serif, arial;
 }
 
+.train-one-regular {
+    font-family: "Train One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 button:hover,
 .imagemBotao:hover,
 .textoBotao:hover {
@@ -30,6 +37,10 @@ button {
     text-decoration: none;
 }
 
+.textBold {
+    font-weight: bold;
+}
+
 /*configurações globais dos menus superior e lateral*/
 #menuSuperior {
     background-color: #002C69;
@@ -38,6 +49,7 @@ button {
     height: 80px;
     align-items: center;
     position: fixed;
+    z-index: 1000;
 }
 
 #menuSuperior .textoBotao {
@@ -94,4 +106,48 @@ button {
 
 #menuLateral #menuLateralIcon2 {
     padding-top: 20px;
+}
+
+#fimDePagina {
+    background-color: black;
+    width: 100%;
+    height: auto;
+    padding: 10px 0px;
+    margin-top: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#fimDePagina h1,
+p {
+    margin: 2px 0;
+    padding: 0;
+    text-align: center;
+}
+
+#fimDePagina #texto {
+    width: 80%;
+    height: auto;
+}
+
+#fimDePagina #texto #icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#fimDePagina #texto #icons img {
+    width: 40px;
+    height: auto;
+    object-fit: contain;
+    margin: 5px 5px;
+}
+
+#iconeUfpa img,
+#iconeCamtuc img {
+    width: 90px;
+    height: auto;
+    object-fit: contain;
 }
