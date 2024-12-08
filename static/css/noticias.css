@@ -1,11 +1,3 @@
-#conteudo {
-    height: auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 #noticias {
     margin-top: 85px;
     width: 1000px;

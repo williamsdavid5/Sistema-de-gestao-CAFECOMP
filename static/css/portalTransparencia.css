@@ -1,0 +1,126 @@
+#textoPortal {
+    padding-top: 85px;
+    width: 800px;
+    height: auto;
+}
+
+#textoPortal p {
+    text-align: justify;
+}
+
+#caixa {
+    width: auto;
+    height: auto;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    margin-top: 20px;
+    display: flex;
+    padding: 20px;
+}
+
+#caixa #esquerda {
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#caixa #esquerda p,
+h1 {
+    margin: 0;
+}
+
+#caixa #esquerda h1 {
+    font-size: 60px;
+}
+
+#caixa #direita {
+    background-color: white;
+    border-radius: 8px;
+    height: 350px;
+    width: 200px;
+    margin-left: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+}
+
+#caixa #reclamacoes {
+    width: 400px;
+    height: 200px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#caixa #reclamacoes img {
+    height: 200px;
+    width: auto;
+    object-fit: contain;
+    margin: 0px 5px;
+}
+
+#caixa #reclamacoes p {
+    text-align: right;
+}
+
+/* Estiliza a barra de rolagem para navegadores baseados em Webkit (Chrome, Edge, etc.) */
+#direita::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Cor de fundo da barra de rolagem */
+#direita::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+    border-radius: 10px;
+}
+
+/* Cor e estilo do thumb (a parte "arrastável") */
+#direita::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+/* Estilo ao passar o mouse sobre o thumb */
+#direita::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#definirTransparencia {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#deslizante {
+    -webkit-appearance: none;
+    width: 300px;
+    height: 15px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    margin: 20px 0px;
+}
+
+#deslizante::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    background: #888;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+#deslizante:hover::-webkit-slider-thumb {
+    background: #555;
+}

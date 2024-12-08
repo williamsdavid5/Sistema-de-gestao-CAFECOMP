@@ -46,3 +46,9 @@ function resetSlideTimer() {
     clearInterval(slideTimer);
     slideTimer = setInterval(nextSlide, slideInterval);
 }
+
+const botaoVerCaixa = document.getElementById('botaoVerCaixa');
+
+botaoVerCaixa.addEventListener('click', () => {
+    window.location.href = 'portalTransparencia.html'
+});
