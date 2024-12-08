@@ -1,11 +1,10 @@
-from abc import ABC, abstractmethod
-
-class User(ABC):
-    def __init__(self, n_matricula: str, nome: str, senha: str, email: str):
+class User():
+    def __init__(self, n_matricula:str, nome:str, senha:str, email:str, privilegio:bool = False):
         self._n_matricula = n_matricula
         self._nome = nome
         self._senha = senha
         self._email = email
+        self._privilegio = privilegio
 
     # Property e setter para n_matricula
     @property
@@ -50,3 +49,16 @@ class User(ABC):
         if "@" not in value or "." not in value:
             raise ValueError("O email fornecido não é válido.")
         self._email = value
+
+    # Property e setter para privilegio
+    @property
+    def privilegio(self):
+        return self._privilegio
+    
+    @privilegio.setter
+    def privilegio(self, value:bool):
+        if not isinstance(value, bool):
+            raise ValueError("O privilégio deve ser booleano")
+        self._privilegio = value
+
+    def criar_chamado(self): ...
