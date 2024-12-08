@@ -1,0 +1,68 @@
+#cabecalho {
+    height: auto;
+    width: 900px;
+    padding-top: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cabecalho button {
+    width: 200px;
+    height: 50px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+
+#titulo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 600px;
+}
+
+.textoChamado p,
+h1,
+h3 {
+    padding: 0;
+    margin: 2px 0px;
+    text-align: left;
+}
+
+.chamado {
+    width: 900px;
+    height: auto;
+    background-color: #DEDEDE;
+    border-radius: 10px;
+    margin: 10px 0px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.textoChamado,
+.statusChamado {
+    height: 50px;
+}
+
+.textoChamado {
+    width: 80%;
+    height: auto;
+}
+
+.statusChamado {
+    width: 20%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pendente {
+    color: red;
+}
+
+.resolvido {
+    color: green;
+}
