@@ -1,64 +1,54 @@
-// Importação das funções do Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+const slides = document.querySelectorAll('.slide');
+const buttons = document.querySelectorAll('.botaoSlider');
+let currentSlide = 0;
+const slideInterval = 5000; // Tempo de intervalo entre slides (em milissegundos)
 
-// Configuração do Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyAT9q9Yqs8NL4_c0egcwxRjcgPBXC1pbcg",
-    authDomain: "cafecomp-gestao.firebaseapp.com",
-    projectId: "cafecomp-gestao",
-    storageBucket: "cafecomp-gestao.firebasestorage.app",
-    messagingSenderId: "271234898667",
-    appId: "1:271234898667:web:631ca66b9a38bd195d7cae",
-    measurementId: "G-ZCJMYJ893E"
-};
+// Função para mostrar o slide ativo e destacar o botão
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) {
+            slide.classList.add('active');
+        }
+    });
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+    buttons.forEach((button, i) => {
+        button.classList.remove('active');
+        if (i === index) {
+            button.classList.add('active');
+        }
+    });
+}
 
-const botaoEntrar = document.getElementById('botaoEntrar');
-const inputEmail = document.getElementById('inputEmail');
-const inputSenha = document.getElementById('inputSenha');
-const botaoRedefinirSenha = document.getElementById('linkRedefinirSenha');
+// Configuração inicial
+showSlide(currentSlide);
 
-// Evento de clique no botão de login
-botaoEntrar.addEventListener('click', async (e) => {
-    e.preventDefault();
-
-    const email = inputEmail.value;
-    const senha = inputSenha.value;
-
-    try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, senha);
-        const user = userCredential.user;
-        console.log("Usuário autenticado:", user.email);
-
-        window.location.href = 'inicio.html';
-    } catch (error) {
-        alert("Erro ao fazer login: " + error.message);
-    }
+// Adiciona eventos aos botões
+buttons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+        currentSlide = index;
+        showSlide(currentSlide);
+        resetSlideTimer();
+    });
 });
 
-botaoRedefinirSenha.addEventListener('click', async (e) => {
-    e.preventDefault();
+// Função para alternar automaticamente os slides
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
 
-    const email = inputEmail.value;
+// Timer para avançar automaticamente os slides
+let slideTimer = setInterval(nextSlide, slideInterval);
 
-    if (!email) {
-        alert("Por favor, insira um email para redefinir a senha.");
-        return;
-    }
+// Função para reiniciar o timer quando um botão for clicado
+function resetSlideTimer() {
+    clearInterval(slideTimer);
+    slideTimer = setInterval(nextSlide, slideInterval);
+}
 
-    try {
-        await sendPasswordResetEmail(auth, email);
-        alert("Email de redefinição de senha enviado!");
-    } catch (error) {
-        alert("Erro ao enviar email de redefinição de senha: " + error.message);
-    }
-});
+const botaoVerCaixa = document.getElementById('botaoVerCaixa');
 
-const botaoCadastro = document.getElementById('botaoNaoPossuoUmaConta');
-
-botaoCadastro.addEventListener('click', () => {
-    window.location.href = 'cadastro.html'
+botaoVerCaixa.addEventListener('click', () => {
+    window.location.href = 'portalTransparencia.html'
 });

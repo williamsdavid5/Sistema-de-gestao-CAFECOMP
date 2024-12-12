@@ -71,8 +71,15 @@ button {
     width: 100px;
     height: auto;
     object-fit: contain;
-    margin-left: auto;
     padding: 20px;
+}
+
+#menuSuperior #botaoSair {
+    margin-left: auto;
+    color: white;
+    background-color: black;
+    width: 100px;
+    height: 40px;
 }
 
 #menuLateral {

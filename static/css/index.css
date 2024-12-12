@@ -1,57 +1,180 @@
-body {
-    background-image: url("../img/background-login.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+#muralDeNoticias {
+    background-color: black;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
 }
 
-#janelaDeLogin {
-    background-color: #002C69;
-    border-radius: 15px;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 50px;
+.slide {
+    background-size: cover;
+    display: none;
+}
+
+#slide1 {
+    background-image: url('../img/noticia1.png');
+}
+
+#slide2 {
+    background-image: url('../img/noticia2.png');
+}
+
+#slide3 {
+    background-image: url('../img/noticia3.jpeg');
+}
+
+.slide.active {
+    display: block;
+}
+
+#muralDeNoticias img {
+    height: 600px;
+    width: auto;
+    object-fit: contain;
+}
+
+#muralDeNoticias .noticia {
+    background: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    color: white;
+    padding-top: 90px;
+    padding-left: 40px;
+    width: 700px;
+    height: 510px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+
+}
+
+.noticia h1 {
+    font-size: 45px;
+    font-weight: bold;
+    margin: 0px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.noticia p {
+    font-size: 20px;
+    margin: 10px 0px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+}
+
+.noticia a {
+    color: white;
+    font-weight: bold;
+}
+
+#botoesSlider {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 550px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.botaoSlider {
+    background-color: rgb(131, 131, 131);
+    height: 15px;
+    width: 80px;
+    margin: 0px 10px;
+}
+
+.botaoSlider.active {
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#seçãoCaixa {
+    display: flex;
+    justify-content: center;
+}
+
+#seçãoCaixa #resumoCaixa {
+    background-color: black;
+    color: white;
+    width: 400px;
+    height: auto;
+    margin: 20px;
+    border-radius: 20px;
+    padding: 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#seçãoCaixa #sobreOCaixa {
+    width: 600px;
+    height: 200px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#seçãoCaixa #sobreOCaixa p {
+    text-align: justify;
+}
+
+#seçãoCaixa #resumoCaixa p {
+    padding: 0;
+    margin: 0;
+}
+
+#valorCaixa {
+    padding: 0;
+    margin: 0;
+    font-size: 60px;
+    text-align: center;
+}
+
+#dataCaixa {
+    text-align: center;
+}
+
+#botaoVerCaixa {
+    padding: 10px;
+    width: 200px;
+    margin: 10px;
+}
+
+#textoCaixaAtual {
+    text-align: left;
+    width: 100%;
+}
+
+#seçãoChamado {
+    width: 100%;
+    height: auto;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#janelaDeLogin img {
+#resumoChamado {
+    width: 600px;
+    height: 150px;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+#divLino img {
     width: 230px;
     height: auto;
     object-fit: contain;
 }
 
-#janelaDeLogin p {
-    color: white;
-    font-weight: bold;
-}
-
-#janelaDeLogin input {
-    border: none;
-    margin: 7px 5px;
-    border-radius: 60px;
-    width: 320px;
-    height: 40px;
-    padding: 0px 20px;
-}
-
-#janelaDeLogin button {
-    width: 342px;
-    height: 42px;
-    margin: 7px 5px;
-}
-
-#botaoEntrar {
-    background: black;
-    color: white;
-}
-
-a {
-    color: white;
-    margin: 7px 5px;
+#faixa {
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    background-color: #DEDEDE;
+    z-index: -1;
 }
