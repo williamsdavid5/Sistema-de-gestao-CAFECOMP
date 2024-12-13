@@ -14,6 +14,7 @@
 
 .noticia:hover {
     transform: scale(1.01);
+    cursor: pointer;
 }
 
 .TextoNoticia {

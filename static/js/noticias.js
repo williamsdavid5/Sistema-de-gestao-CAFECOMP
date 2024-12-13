@@ -22,3 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
         janelaPublicarNoticia.style.display = 'none';  // Esconde a div
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const noticias = document.querySelectorAll('.noticia');
+
+    noticias.forEach(noticia => {
+        noticia.addEventListener('click', () => {
+            // Redireciona para a página da notícia
+            window.location.href = 'noticiaPagina.html';
+        });
+    });
+});

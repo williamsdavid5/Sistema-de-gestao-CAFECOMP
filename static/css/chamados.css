@@ -94,7 +94,8 @@ h3 {
 }
 
 #botaoEnviar,
-#botaoCancelar {
+#botaoCancelar,
+#botaoFechar {
     width: 150px;
     height: 30px;
     margin: 5px;
@@ -103,4 +104,18 @@ h3 {
 #botaoEnviar {
     background-color: black;
     color: white;
+}
+
+#descricaoChamado {
+    text-align: justify;
+    margin: 10px 0px;
+}
+
+#statusChamado:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+#statusChamado:active {
+    transform: scale(0.98);
 }
