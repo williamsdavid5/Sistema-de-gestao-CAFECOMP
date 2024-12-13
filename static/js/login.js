@@ -43,3 +43,8 @@ botaoEntrar.addEventListener('click', async (e) => {
         alert("Erro ao fazer login: " + error.message);
     }
 });
+
+const botaoCadastro = document.getElementById('botaoNaoPossuoUmaConta');
+botaoCadastro.addEventListener('click', () => {
+    window.location.href = 'cadastro.html'
+})

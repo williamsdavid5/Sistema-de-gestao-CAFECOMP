@@ -53,18 +53,20 @@
                 estão sempre acessíveis para consulta. Nosso objetivo é reinvestir cada centavo em benefícios para a
                 comunidade acadêmica, tornando a experiência de todos mais rica e colaborativa.</p>
         </div>
+        <button id="botaoRegistrarCaixa">Registrar alteração</button>
         <div id="caixa">
             <div id="esquerda">
                 <p class="textBold" id="textoCaixaAtual">Caixa atual</p>
                 <h1 class="train-one-regular" id="valorCaixa">R$ 562,00</h1>
                 <p class="textBold" id="dataCaixa">Ultima atualização: 06/12/2024</p>
+                <button id="botaoAcessarPlanilha">Acessar planilha</button>
                 <div id="reclamacoes">
                     <p class="textBold">
                         Dúvidas? Reclamações? <br>
                         Abra um chamado! <br>
                         <span style="color: red; font-weight: bold;">Clique no Lino</span> <br>
                     </p>
-                    <img src="../static/img/linoMegafone.png" alt="" class="imagemBotao">
+                    <img src="../static/img/linoMegafone.png" alt="" class="imagemBotao" id="botaoChamado">
                 </div>
             </div>
             <div id="direita">
@@ -107,6 +109,24 @@
         <input type="range" name="" id="deslizante" min="0" max="100" value="100">
     </div>
 
+    <div id="registrarCaixa" class="telaSobreposta">
+        <div id="janela" class="janelaSobreposta">
+            <h1>Registrar alteração de caixa</h1>
+            <p>Insira o valor da alteração de caixa, use ponto ou vírgula para separar os centavos, <strong>use valores
+                    negativos para registrar a subtração do valor.</strong></p>
+            <div id="entradas">
+                <p class="textBold">R$</p>
+                <input type="text">
+                <p class="textBold">Data - hora</p>
+                <input type="text">
+            </div>
+            <button id="botaoAnexarComprovante">Anexar comprovante</button>
+            <p>se houver</p>
+            <button>Salvar</button>
+            <button id="botaoCancelar">Cancelar</button>
+            <p id="aviso">Atenção: após salvar, não será possível desfazer!</p>
+        </div>
+    </div>
 
 
     <!-- fim de pagina -->

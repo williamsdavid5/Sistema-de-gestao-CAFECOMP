@@ -32,12 +32,8 @@ body {
 }
 
 #janelaDeLogin input {
-    border: none;
-    margin: 7px 5px;
-    border-radius: 60px;
     width: 320px;
     height: 40px;
-    padding: 0px 20px;
 }
 
 #janelaDeLogin button {

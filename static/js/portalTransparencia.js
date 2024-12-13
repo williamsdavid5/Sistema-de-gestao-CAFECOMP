@@ -22,3 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'login.html';  // Redireciona para a página de login
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const botaoRegistrarCaixa = document.getElementById('botaoRegistrarCaixa');
+    const registrarCaixa = document.getElementById('registrarCaixa');
+    const botaoCancelar = document.getElementById('botaoCancelar');
+
+    // Mostrar a div registrarCaixa ao clicar no botão botaoRegistrarCaixa
+    botaoRegistrarCaixa.addEventListener('click', () => {
+        registrarCaixa.style.display = 'flex';  // Mostra a div
+    });
+
+    // Esconder a div registrarCaixa ao clicar no botão botaoCancelar
+    botaoCancelar.addEventListener('click', () => {
+        registrarCaixa.style.display = 'none';  // Esconde a div
+    });
+});

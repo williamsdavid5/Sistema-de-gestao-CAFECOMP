@@ -66,3 +66,41 @@ h3 {
 .resolvido {
     color: green;
 }
+
+.janelaSobreposta {
+    width: 400px;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.janelaSobreposta input {
+    width: 350px;
+    height: 30px;
+}
+
+#areaDescricao {
+    width: 360px;
+    height: 300px;
+    border-radius: 10px;
+    margin: 0;
+    padding: 10px;
+    border: none;
+    margin-bottom: 5px;
+    resize: none;
+}
+
+#botaoEnviar,
+#botaoCancelar {
+    width: 150px;
+    height: 30px;
+    margin: 5px;
+}
+
+#botaoEnviar {
+    background-color: black;
+    color: white;
+}

@@ -79,3 +79,71 @@ h1 {
     border-radius: 20px;
     text-align: center;
 }
+
+#botaoPublicarNoticia {
+    width: 200px;
+    height: 25px;
+    color: white;
+    background-color: black;
+}
+
+#publicarNoticia {
+    width: auto;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#publicarNoticia #esquerda,
+#direita {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 10px;
+}
+
+#publicarNoticia h1 {
+    width: 100%;
+}
+
+#publicarNoticia #inserirImagem {
+    background-color: white;
+    width: 500px;
+    height: 250px;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#publicarNoticia input {
+    width: 460px;
+    height: 30px;
+}
+
+#publicarNoticia textarea {
+    width: 400px;
+    height: 400px;
+    border: none;
+    resize: none;
+    border-radius: 10px;
+    padding: 20px;
+
+}
+
+#botaoSalvar,
+#botaoCancelar {
+    width: 150px;
+    height: 25px;
+    margin: 5px 0px;
+}
+
+#botaoSalvar {
+    background-color: black;
+    color: white;
+}

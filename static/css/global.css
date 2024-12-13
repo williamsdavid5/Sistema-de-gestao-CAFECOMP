@@ -167,3 +167,30 @@ p {
     flex-direction: column;
     align-items: center;
 }
+
+input {
+    border: none;
+    margin: 7px 5px;
+    border-radius: 60px;
+    padding: 0px 20px;
+}
+
+.telaSobreposta {
+    position: fixed;
+    background-color: rgba(0, 44, 105, 0.9);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.janelaSobreposta {
+    background-color: #DEDEDE;
+    border-radius: 20px;
+    margin-top: 80px;
+
+}
