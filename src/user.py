@@ -1,7 +1,9 @@
+from src.chamado import Chamado
+
 class User():
     def __init__(self, n_matricula:str, nome:str, senha:str, email:str, privilegio:bool = False):
         self._n_matricula = n_matricula
-        self._nome = nome
+        self.nome = nome
         self._senha = senha
         self._email = email
         self._privilegio = privilegio
@@ -16,17 +18,6 @@ class User():
         if not isinstance(value, str):
             raise ValueError("O número de matrícula deve ser uma string.")
         self._n_matricula = value
-
-    # Property e setter para nome
-    @property
-    def nome(self):
-        return self._nome
-
-    @nome.setter
-    def nome(self, value: str):
-        if not isinstance(value, str):
-            raise ValueError("O nome deve ser uma string.")
-        self._nome = value
 
     # Property e setter para senha
     @property
@@ -61,4 +52,8 @@ class User():
             raise ValueError("O privilégio deve ser booleano")
         self._privilegio = value
 
-    def criar_chamado(self): ...
+    # Função que cria o chamado de um aluno e retorna
+    def criar_chamado(self, titulo:str, descricao:str, data_public:str) -> Chamado:
+        chamado = Chamado(titulo, descricao, self.n_matricula, data_public)
+
+        return chamado
