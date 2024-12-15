@@ -1,3 +1,5 @@
+import re
+
 class Chamado:
     def __init__(self, titulo:str, descricao:str, user:str, data_public:str):
         self._id = 0
@@ -30,3 +32,15 @@ class Chamado:
             raise ValueError('O valor do status deve ser 1, 2 o 3.')
         
         self._status = status
+
+    @property
+    def data_public(self) -> str:
+        return self._data_public
+    
+    @data_public.setter
+    def data_public(self, value):
+        pattern = r'^(20|21)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$'
+        if not re.match(pattern, value):
+            raise ValueError('A data deve seguir o formato yyyy-mm-aa')
+        
+        self._data_public = value

@@ -1,10 +1,12 @@
+import re
+
 from src.transacao import Transacao
 
 class Relatorio:
-    def __init__(self, data:str, transacoes:list[Transacao]):
+    def __init__(self):
         self._id = 0
-        self.data = data
-        self.transacoes = transacoes
+        self.data = ''
+        self.transacoes:list[Transacao] = []
         self.saldo_total:float = 0.0
 
     @property
@@ -21,6 +23,7 @@ class Relatorio:
 
     def exportarRelatorio(self): ...
 
-    def adiciona_transacao(self): ...
+    def adiciona_transacao(self, transacao:Transacao):
+        self.transacoes.append(transacao)
 
-    def excluir_transacao(self): ...
+    def excluir_transacao(self, transacao_id:int): ...

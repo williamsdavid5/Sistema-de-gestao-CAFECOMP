@@ -1,10 +1,11 @@
+import re
+
 from src.chamado import Chamado
 
 class User():
-    def __init__(self, n_matricula:str, nome:str, senha:str, email:str, privilegio:bool = False):
+    def __init__(self, n_matricula:str, nome:str, email:str, privilegio:bool = False):
         self._n_matricula = n_matricula
         self.nome = nome
-        self._senha = senha
         self._email = email
         self._privilegio = privilegio
 
@@ -18,17 +19,6 @@ class User():
         if not isinstance(value, str):
             raise ValueError("O número de matrícula deve ser uma string.")
         self._n_matricula = value
-
-    # Property e setter para senha
-    @property
-    def senha(self):
-        return self._senha
-
-    @senha.setter
-    def senha(self, value: str):
-        if not isinstance(value, str):
-            raise ValueError("A senha deve ser uma string.")
-        self._senha = value
 
     # Property e setter para email
     @property
@@ -54,6 +44,10 @@ class User():
 
     # Função que cria o chamado de um aluno e retorna
     def criar_chamado(self, titulo:str, descricao:str, data_public:str) -> Chamado:
+        pattern = r'^(20|21)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$'
+        if not re.match(pattern, data_public):
+            raise ValueError('A data deve seguir o formato yyyy-mm-aa')
+
         chamado = Chamado(titulo, descricao, self.n_matricula, data_public)
 
         return chamado
