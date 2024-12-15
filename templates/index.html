@@ -20,19 +20,19 @@
     <div id="menus">
         <div id="menuSuperior">
             <img src="../static/img/menuLateralIcon.png" alt="" id="menuLateralIcon" class="imagemBotao show">
-            <a href="index.html" class="textoBotao">Início</a>
-            <a href="noticias.html" class="textoBotao">Notícias</a>
-            <a href="portalTransparencia.html" class="textoBotao">Portal Transparência</a>
-            <a href="chamados.html" class="textoBotao">Chamados</a>
+            <a href="/" class="textoBotao">Início</a> <!-- Correção aqui -->
+            <a href="/noticias/" class="textoBotao">Notícias</a>
+            <a href="/portal-transparencia/" class="textoBotao">Portal Transparência</a>
+            <a href="/chamados/" class="textoBotao">Chamados</a>
             <button id="botaoSair">Sair</button>
             <img src="../static/img/CAFECOMP-logo.png" alt="" id="cafecompLogo">
         </div>
         <div id="menuLateral">
             <img src="../static/img/menuLateralIcon.png" alt="" id="menuLateralIcon2" class="imagemBotao show">
-            <a href="index.html" class="textoBotao">Início</a>
-            <a href="noticias.html" class="textoBotao">Notícias</a>
-            <a href="portalTransparencia.html" class="textoBotao">Portal Transparência</a>
-            <a href="chamados.html" class="textoBotao">Chamados</a>
+            <a href="/" class="textoBotao">Início</a> <!-- Correção aqui -->
+            <a href="/noticias/" class="textoBotao">Notícias</a>
+            <a href="/portal-transparencia/" class="textoBotao">Portal Transparência</a>
+            <a href="/chamados/" class="textoBotao">Chamados</a>
             <a href="#" class="textoBotao">Fale Conosco</a>
             <a href="https://sagitta.ufpa.br/sagitta/index.jsf" class="textoBotao">SAGITTA</a>
             <a href="https://sigaa.ufpa.br/" class="textoBotao">SIGAA</a>
@@ -41,6 +41,7 @@
         </div>
     </div>
     <!-- Menus lateral e superior -->
+
     <div id="muralDeNoticias">
         <div class="slide active" id="slide1">
             <div class="noticia">
@@ -50,7 +51,7 @@
                     graduação em Engenharia Elétrica e de Engenharia Civil e, posteriormente, o curso de Engenharia
                     Mecânica.
                 </p>
-                <a href="#">Continuar lendo</a>
+                <a href="/noticias-pagina/" class="textoBotao">Continuar lendo</a>
             </div>
         </div>
         <div class="slide" id="slide2">
@@ -61,7 +62,7 @@
                     início, nesta quinta-feira, 14 de novembro, à habilitação ao vínculo institucional das(os)
                     candidatas(os) classificadas(os) na terceira reoferta do Processo Seletivo 2024 (PS2024).
                 </p>
-                <a href="#">Continuar lendo</a>
+                <a href="/noticias-pagina/" class="textoBotao">Continuar lendo</a>
             </div>
         </div>
         <div class="slide" id="slide3">
@@ -72,7 +73,7 @@
                     Rui Barbosa, realizará a 1ª Edição do Futebol de Robô nesta sexta-feira. Venha prestigiar a
                     Culminância dos Projetos de Eletiva e Aprofundamento Curricular!
                 </p>
-                <a href="#">Continuar lendo</a>
+                <a href="/noticias-pagina/" class="textoBotao">Continuar lendo</a>
             </div>
         </div>
         <div id="botoesSlider">
@@ -81,6 +82,7 @@
             <button class="botaoSlider"></button>
         </div>
     </div>
+
     <div id="seçãoCaixa">
         <div id="resumoCaixa">
             <p class="textBold" id="textoCaixaAtual">Caixa atual</p>
@@ -96,6 +98,7 @@
                 comunidade acadêmica, tornando a experiência de todos mais rica e colaborativa.</p>
         </div>
     </div>
+
     <div id="seçãoChamado">
         <div id="resumoChamado">
             <p>
@@ -110,7 +113,8 @@
             </p>
         </div>
         <div id="divLino">
-            <img src="../static/img/linoMegafone.png" alt="" class="imagemBotao" id="botaoChamado">
+            <img src="../static/img/linoMegafone.png" alt="" class="imagemBotao" id="botaoChamado"
+                onclick="window.location.href='/chamados/'">
         </div>
         <div id="faixa"></div>
     </div>
@@ -118,7 +122,7 @@
     <!-- fim de pagina -->
     <div id="fimDePagina">
         <div id="iconeUfpa">
-            <img src="../static/img/ufpaIcon.png" alt="">
+            <img src="../static/img/ufpaIcon.png" alt="" />
         </div>
         <div id="texto">
             <h1>CAFECOMP</h1>
@@ -136,7 +140,7 @@
             </div>
         </div>
         <div id="iconeCamtuc">
-            <img src="../static/img/camtucIcon.png" alt="">
+            <img src="../static/img/camtucIcon.png" alt="" />
         </div>
     </div>
 

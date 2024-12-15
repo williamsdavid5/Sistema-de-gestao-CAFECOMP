@@ -46,8 +46,8 @@ botaoConfirmar.addEventListener('click', async (e) => {
         const user = userCredential.user;
         console.log("Usuário criado com sucesso:", user.email);
 
-        // Redireciona para a página de login ou página inicial após o cadastro
-        window.location.href = 'index.html';
+        // Redireciona para a página inicial após o cadastro usando a rota do Flask
+        window.location.href = '/'; // Altere a URL para a rota desejada
 
     } catch (error) {
         // Captura erro e exibe uma mensagem de erro ao usuário

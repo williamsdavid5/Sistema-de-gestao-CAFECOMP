@@ -47,8 +47,9 @@ function resetSlideTimer() {
     slideTimer = setInterval(nextSlide, slideInterval);
 }
 
+// Redireciona para a página de Portal Transparência
 const botaoVerCaixa = document.getElementById('botaoVerCaixa');
 
 botaoVerCaixa.addEventListener('click', () => {
-    window.location.href = 'portalTransparencia.html'
+    window.location.href = '/portal-transparencia';  // Atualizado para a rota Flask
 });

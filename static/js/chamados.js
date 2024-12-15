@@ -2,8 +2,8 @@ import { verificarLoginLocal } from './global.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     if (!verificarLoginLocal()) {
-        console.warn("Usuário não está logado. Redirecionando para login.html");
-        window.location.href = 'login.html';  // Redireciona para a página de login
+        console.warn("Usuário não está logado. Redirecionando para login.");
+        window.location.href = '/login';  // Redireciona para a rota de login do Flask
     }
 });
 
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Esconder a div verChamado ao clicar no botão botaoCancelar
+    // Esconder a div verChamado ao clicar no botão botaoFechar
     if (botaoFechar) {
         botaoFechar.addEventListener('click', () => {
             verChamado.style.display = 'none'; // Esconde a div

@@ -2,8 +2,8 @@ import { verificarLoginLocal } from './global.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     if (!verificarLoginLocal()) {
-        console.warn("Usuário não está logado. Redirecionando para login.html");
-        window.location.href = 'login.html';  // Redireciona para a página de login
+        console.warn("Usuário não está logado. Redirecionando para /login");
+        window.location.href = '/login';  // Redireciona para a página de login (rota login_route)
     }
 });
 
@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     noticias.forEach(noticia => {
         noticia.addEventListener('click', () => {
-            // Redireciona para a página da notícia
-            window.location.href = 'noticiaPagina.html';
+            // Redireciona para a página da notícia (rota noticia_pagina_route)
+            window.location.href = '/noticias-pagina';
         });
     });
 });

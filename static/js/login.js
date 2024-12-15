@@ -37,7 +37,7 @@ botaoEntrar.addEventListener('click', async (e) => {
         localStorage.setItem('userId', user.uid);
 
         // Redireciona após salvar
-        window.location.href = 'index.html';
+        window.location.href = '/';  // Redireciona para a home (rota home_route)
     } catch (error) {
         console.error("Erro ao fazer login:", error);
         alert("Erro ao fazer login: " + error.message);
@@ -46,5 +46,5 @@ botaoEntrar.addEventListener('click', async (e) => {
 
 const botaoCadastro = document.getElementById('botaoNaoPossuoUmaConta');
 botaoCadastro.addEventListener('click', () => {
-    window.location.href = 'cadastro.html'
-})
+    window.location.href = '/cadastro';  // Redireciona para a rota de cadastro (cadasto_route)
+});

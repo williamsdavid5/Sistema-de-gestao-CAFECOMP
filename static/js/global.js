@@ -11,12 +11,9 @@ menuLateralIcon2.addEventListener('click', () => {
     menuLateral.classList.remove('show');
 });
 
-
-// Importação das bibliotecas do Firebase
 // Importação das bibliotecas do Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-
 
 // Inicializando o Firebase e autenticando
 const firebaseConfig = {
@@ -44,7 +41,6 @@ function atualizarVisibilidadeBotoes() {
     if (verificarLoginLocal()) {
         // Se estiver logado, exibe os botões
         if (botaoSair) botaoSair.style.display = 'block';
-
     } else {
         // Se não estiver logado, esconde os botões
         if (botaoSair) botaoSair.style.display = 'none';
@@ -58,7 +54,7 @@ function deslogar() {
         localStorage.removeItem('usuarioLogado');
         localStorage.removeItem('userId');
         atualizarVisibilidadeBotoes(); // Atualiza a visibilidade dos botões
-        window.location.href = 'login.html'; // Redireciona para a página de login
+        window.location.href = '/login'; // Redireciona para a rota de login do Flask
     }).catch((error) => {
         console.error("Erro ao deslogar:", error);
     });
@@ -69,7 +65,7 @@ function redirecionarComLogin(url) {
     if (verificarLoginLocal()) {
         window.location.href = url; // Redireciona para a página
     } else {
-        window.location.href = 'login.html'; // Redireciona para login se não estiver logado
+        window.location.href = '/login'; // Redireciona para login se não estiver logado
     }
 }
 
@@ -90,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (botaoVerCaixa) {
         botaoVerCaixa.addEventListener('click', (e) => {
             e.preventDefault();
-            redirecionarComLogin('portalTransparencia.html');
+            redirecionarComLogin('/portal-transparencia'); // Atualizado para a rota do Flask
         });
     }
 
@@ -99,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (botaoChamado) {
         botaoChamado.addEventListener('click', (e) => {
             e.preventDefault();
-            redirecionarComLogin('chamados.html');
+            redirecionarComLogin('/chamados'); // Atualizado para a rota do Flask
         });
     }
 });
