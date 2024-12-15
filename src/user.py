@@ -42,6 +42,14 @@ class User():
             raise ValueError("O privilégio deve ser booleano")
         self._privilegio = value
 
+    def to_dict(self) -> dict:
+        return {
+                'n_matricula':self.n_matricula,
+                'nome':self.nome,
+                'email':self.email,
+                'privilegio':self.privilegio
+        }
+
     # Função que cria o chamado de um aluno e retorna
     def criar_chamado(self, titulo:str, descricao:str, data_public:str) -> Chamado:
         pattern = r'^(20|21)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$'

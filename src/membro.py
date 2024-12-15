@@ -10,6 +10,9 @@ class Membro(User):
         super().__init__(n_matricula, nome, email)
         self.cargo = cargo
     
+    def to_dict(self):
+        return super().to_dict() | {'cargo':self.cargo}
+
     def cadastrar_usuario(self, usuario:User): ...
 
     def editar_usuario(self, n_matricula:str): ...

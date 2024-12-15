@@ -1,13 +1,14 @@
 import re
+from turtle import title
 
 class Chamado:
-    def __init__(self, titulo:str, descricao:str, user:str, data_public:str):
+    def __init__(self, titulo:str, descricao:str, user:str, data:str):
         self._id = 0
         self.titulo = titulo
         self.descricao = descricao
         self.user = user
-        self.data_public = data_public
-        self._status = 0
+        self.data = data
+        self._status = False
     
     @property
     def id(self) -> int:
@@ -20,27 +21,35 @@ class Chamado:
         self._id = id
         
     @property
-    def status(self) -> int:
+    def status(self) -> bool:
         return self._status
     
     @status.setter
-    def status(self, status:int):
-        if not isinstance(status, int):
-            raise TypeError('O status deve ser um valor inteiro.')
-        
-        if status < 0 or 2 < status:
-            raise ValueError('O valor do status deve ser 1, 2 o 3.')
+    def status(self, status:bool):
+        if not isinstance(status, bool):
+            raise TypeError('O status deve ser um valor booleano.')
         
         self._status = status
 
     @property
-    def data_public(self) -> str:
-        return self._data_public
+    def data(self) -> str:
+        return self._data
     
-    @data_public.setter
-    def data_public(self, value):
+    @data.setter
+    def data(self, value):
         pattern = r'^(20|21)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$'
         if not re.match(pattern, value):
             raise ValueError('A data deve seguir o formato yyyy-mm-aa')
         
-        self._data_public = value
+        self._data = value
+
+    def to_dict(self) -> dict: 
+
+        return {
+            'id':self.id,
+            'titulo':self.titulo,
+            'descricao':self.descricao,
+            'user':self.user,
+            'data':self._data,
+            'status':self._status,
+        }

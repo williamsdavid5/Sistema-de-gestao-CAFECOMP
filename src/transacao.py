@@ -35,3 +35,13 @@ class Transacao:
             raise ValueError('A data deve seguir o formato yyyy-mm-aa')
         
         self._data = data
+    
+    def to_dict(self) -> dict: 
+        return {
+            'id':self._id,
+            'valor':self.valor,
+            'data':self._data,
+            'categoria':self.categoria,
+            'comprovante':self.comprovante,
+            'descricao':self.descricao
+        }

@@ -19,6 +19,14 @@ class Relatorio:
             raise TypeError('O id deve ser inteiro')
         self._id = id
 
+    def to_dict(self) -> dict:
+        return {
+            'id':self.id,
+            'data':self.data,
+            'transacoes':[t.id for t in self.transacoes],
+            'saldo-total':self.saldo_total
+        }
+
     def calcular_saldo_total(self): ...
 
     def exportarRelatorio(self): ...

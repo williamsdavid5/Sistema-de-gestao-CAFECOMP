@@ -5,14 +5,14 @@ class Aviso:
                  titulo:str,
                  subtitulo:str,
                  texto:str, 
-                 data_public:str, 
+                 data:str, 
                  imagens:list[str] = None, 
                  links:list[str] = None):
         self._id = 0
         self.titulo = titulo
         self.subtitulo = subtitulo
         self.texto = texto
-        self.data_public = data_public
+        self.data = data
         self.imagens = imagens if not imagens == None else [] 
         self.links = links if not links == None else []
 
@@ -27,13 +27,24 @@ class Aviso:
         self._id = id
 
     @property
-    def data_public(self) -> str:
-        return self._data_public
+    def data(self) -> str:
+        return self._data
     
-    @data_public.setter
-    def data_public(self, value):
+    @data.setter
+    def data(self, value):
         pattern = r'^(20|21)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$'
         if not re.match(pattern, value):
             raise ValueError('A data deve seguir o formato yyyy-mm-aa')
         
-        self._data_public = value
+        self._data = value
+
+    def to_dict(self) -> dict: 
+        return {
+            'id':self.id,
+            'titulo':self.titulo,
+            'subtitulo':self.subtitulo,
+            'texto':self.texto,
+            'data':self.data,
+            'imgens':self.imagens,
+            'links':self.links,
+        }
