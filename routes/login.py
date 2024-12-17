@@ -7,7 +7,7 @@ login_route = Blueprint('login', __name__)
 def login():
     return render_template('login.html')
 
-@login_route.route('/user/<str:email>')
+@login_route.route('/user/<string:email>')
 def get_user(email): 
     user_data = get_user_by_matricula(email)
 
