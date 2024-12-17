@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, jsonify
-from database.db import get_user_by_matricula
+from database.db import get_user_by_email
 
 login_route = Blueprint('login', __name__)
 
@@ -9,7 +9,7 @@ def login():
 
 @login_route.route('/user/<string:email>')
 def get_user(email): 
-    user_data = get_user_by_matricula(email)
+    user_data = get_user_by_email(email)
 
     if 'error' in user_data:
         return jsonify(user_data), 404
