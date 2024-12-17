@@ -7,9 +7,9 @@ login_route = Blueprint('login', __name__)
 def login():
     return render_template('login.html')
 
-@login_route.route('/user/<int:n_matricula>')
-def get_user(n_matricula:int): 
-    user_data = get_user_by_matricula(n_matricula)
+@login_route.route('/user/<str:email>')
+def get_user(email): 
+    user_data = get_user_by_matricula(email)
 
     if 'error' in user_data:
         return jsonify(user_data), 404

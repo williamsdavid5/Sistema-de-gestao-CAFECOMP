@@ -36,6 +36,43 @@ def init_db():
             connection.close()
             print("Conexão com o MySQL encerrada.")
 
+def get_user_by_email(email:str):
+    connection = None
+    try:
+        # Conectando ao servidor MySQL
+        connection = pymysql.connect(**config)
+        cursor = connection.cursor()
+
+        print("Conexão com o servidor MySQL estabelecida.")
+
+        cursor.execute(select.USUARIO_EMAIL, (email,))
+        result = cursor.fetchone()
+
+        if result:
+            privilegio = False
+            cursor.execute(select.PRIVILEGIO, (result[0],))
+            validar = cursor.fetchone()
+            if validar:
+                privilegio = True
+
+            return {
+                'nMatricula': result[0],
+                'nome': result[1],
+                'email': result[2],
+                'privilegio': privilegio
+            }
+        else:
+            return {'error': 'Usuário não encontrado'}
+
+    except pymysql.MySQLError as err:
+        print(f"Erro ao conectar ou executar SQL: {err}")
+
+    finally:
+        # Fechando conexão
+        if connection:
+            cursor.close()
+            connection.close()
+            print("Conexão com o MySQL encerrada.")
 
 def get_user_by_matricula(n_matricula: str):
     connection = None
