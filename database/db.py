@@ -1,9 +1,10 @@
-import pymysql # type: ignore
+import pymysql  # type: ignore
 
-import ddl
-import insert
+from database import ddl
 from database import select
-from config_db import config # Dicionario com as Configuações do MySQL {host, user password, port}
+# Dicionario com as Configuações do MySQL {host, user password, port}
+from database.config_db import config
+
 
 def init_db():
     connection = None
@@ -21,7 +22,6 @@ def init_db():
         cursor.execute(ddl.TABELA_TRANSACAO)
         cursor.execute(ddl.TABELA_MURAL)
         cursor.execute(ddl.TABELA_CHAMADO)
-        cursor.execute(ddl.VIEW_SALDO)
         connection.commit()
 
         print("Banco de dados e tabelas criados com sucesso!")
@@ -35,8 +35,9 @@ def init_db():
             cursor.close()
             connection.close()
             print("Conexão com o MySQL encerrada.")
-    
-def get_user_by_matricula(n_matricula:str):
+
+
+def get_user_by_matricula(n_matricula: str):
     connection = None
     try:
         # Conectando ao servidor MySQL
@@ -44,7 +45,7 @@ def get_user_by_matricula(n_matricula:str):
         cursor = connection.cursor()
 
         print("Conexão com o servidor MySQL estabelecida.")
-    
+
         cursor.execute(select.USUARIO, (n_matricula,))
         result = cursor.fetchone()
 
@@ -52,16 +53,17 @@ def get_user_by_matricula(n_matricula:str):
             privilegio = False
             cursor.execute(select.PRIVILEGIO, (n_matricula,))
             validar = cursor.fetchone()
-            if validar: privilegio = True
+            if validar:
+                privilegio = True
 
             return {
-                'nMatricula':result[0],
-                'nome':result[1],
-                'email':result[2],
+                'nMatricula': result[0],
+                'nome': result[1],
+                'email': result[2],
                 'privilegio': privilegio
             }
         else:
-            return {'error':'Usuário não encontrado'}
+            return {'error': 'Usuário não encontrado'}
 
     except pymysql.MySQLError as err:
         print(f"Erro ao conectar ou executar SQL: {err}")
@@ -73,7 +75,8 @@ def get_user_by_matricula(n_matricula:str):
             connection.close()
             print("Conexão com o MySQL encerrada.")
 
-def inserir(sql:str, dados:tuple):
+
+def inserir(sql: str, dados: tuple):
     resultado = True
     try:
         # Conectar ao banco de dados
@@ -95,5 +98,5 @@ def inserir(sql:str, dados:tuple):
         if connection:
             cursor.close()
             connection.close()
-    
+
     return resultado
