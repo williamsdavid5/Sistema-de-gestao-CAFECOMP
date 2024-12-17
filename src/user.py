@@ -51,11 +51,11 @@ class User():
         }
 
     # Função que cria o chamado de um aluno e retorna
-    def criar_chamado(self, titulo:str, descricao:str, data_public:str) -> Chamado:
+    def criar_chamado(self, titulo:str, descricao:str, datetime:str) -> Chamado:
         pattern = r'^(20|21)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$'
-        if not re.match(pattern, data_public):
+        if not re.match(pattern, datetime):
             raise ValueError('A data deve seguir o formato yyyy-mm-aa')
 
-        chamado = Chamado(titulo, descricao, self.n_matricula, data_public)
+        chamado = Chamado(titulo, descricao, self.n_matricula, datetime)
 
         return chamado

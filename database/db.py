@@ -112,7 +112,6 @@ def get_user_by_matricula(n_matricula: str):
             connection.close()
             print("Conexão com o MySQL encerrada.")
 
-
 def inserir(sql: str, dados: tuple):
     resultado = True
     try:

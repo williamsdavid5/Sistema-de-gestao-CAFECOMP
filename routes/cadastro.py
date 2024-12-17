@@ -14,9 +14,8 @@ def cadastro():
 def novo_cadastro():
     try:
         data = request.get_json()
-        user = User(data['n_matricula'], data['nome'], data['email'])
 
-        resultado = inserir(USUARIO, user)
+        resultado = inserir(USUARIO, (data['n_matricula'], data['nome'], data['email']))
 
         if resultado:
             return jsonify({'success': True}), 200

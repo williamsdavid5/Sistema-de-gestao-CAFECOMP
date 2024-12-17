@@ -1,7 +1,31 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, jsonify
+
+from src.chamado import Chamado
+from src.user import User
+from database.db import get_user_by_matricula, inserir
+from database.insert import CHAMADO
 
 chamados_route = Blueprint('chamados', __name__)
 
 @chamados_route.route('/')
 def chamados():
     return render_template('chamados.html')
+
+@chamados_route.route('/new/user/<string:n_matricula>', methods=['POST'])
+def novo_chamado(n_matricula):
+    try:
+        data = request.get_json()
+        user_data = get_user_by_matricula(n_matricula)
+        user = User(user_data['n_matricula'], user_data['nome'], user_data['email'], user_data['privilegio'])
+
+        chamado = user.criar_chamado(data['titulo'], data['descricao'], data['datetime'])
+        resultado = inserir(CHAMADO, (chamado.descricao, chamado.status, chamado.user, chamado.data))
+
+        if resultado:
+            return jsonify({'success': True}), 200
+        else:
+            return jsonify({'error': str(e)}), 500
+
+    except Exception as e:
+        print(f'erro ao acessar os dados: {e}')
+        return jsonify({'error': str(e)}), 500
