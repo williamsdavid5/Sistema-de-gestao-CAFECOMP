@@ -1,3 +1,5 @@
+from database.db import init_db
+
 from routes.home import home_route
 from routes.login import login_route
 from routes.cadastro import cadasto_route
@@ -8,6 +10,7 @@ from routes.portal_transparencia import portal_transparencia_route
 
 def configure_all(app):
     configure_routes(app)
+    init_db()
 
 def configure_routes(app):
     app.register_blueprint(home_route)
