@@ -7,40 +7,40 @@ class Transacao:
                  categoria:str,
                  comprovante:str, 
                  descricao:str=None):
-        self._id = 0
+        self.__id = 0
         self.valor = valor
-        self.data = data
+        self.date_time = data
         self.categoria = categoria
         self.comprovante = comprovante
         self.descricao = descricao
 
     @property
     def id(self) -> int:
-        return self._id
+        return self.__id
     
     @id.setter
     def id(self, id):
         if not isinstance(id, int):
             raise TypeError('O id deve ser inteiro')
-        self._id = id
+        self.__id = id
 
     @property
-    def data(self) -> str:
-        return self._data
+    def date_time(self) -> str:
+        return self.__date_time
     
-    @data.setter
-    def data(self, data:str):
+    @date_time.setter
+    def date_time(self, data:str):
         pattern = r'^(20|21)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$'
         if not re.match(pattern, data):
             raise ValueError('A data deve seguir o formato yyyy-mm-aa')
         
-        self._data = data
+        self.__date_time = data
     
     def to_dict(self) -> dict: 
         return {
-            'id':self._id,
+            'id':self.__id,
             'valor':self.valor,
-            'data':self._data,
+            'date-time':self.__date_time,
             'categoria':self.categoria,
             'comprovante':self.comprovante,
             'descricao':self.descricao

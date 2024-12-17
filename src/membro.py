@@ -13,12 +13,6 @@ class Membro(User):
     def to_dict(self):
         return super().to_dict() | {'cargo':self.cargo}
 
-    def cadastrar_usuario(self, usuario:User): ...
-
-    def editar_usuario(self, n_matricula:str): ...
-
-    def excluir_usuario(self, n_matricula:str): ...
-
     def criar_aviso(self,
                     titulo:str,
                     subtitulo:str,
@@ -35,10 +29,6 @@ class Membro(User):
 
         return aviso
 
-    def editar_aviso(self): ...
-
-    def excluir_aviso(self): ...
-
     def criar_transacao(self, valor:float, data:str, categoria:str,
                         comprovante:str, descricao:str=None) -> Transacao:
          
@@ -50,8 +40,4 @@ class Membro(User):
 
         return transacao
 
-    def editar_transacao(self): ...
-
-    def excluir_transacao(self): ...
-
-    def editar_chamado(self): ...
+    def edita_status_chamado(self): ...

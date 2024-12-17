@@ -3,7 +3,7 @@ from turtle import title
 
 class Chamado:
     def __init__(self, titulo:str, descricao:str, user:str, data:str):
-        self._id = 0
+        self.__id = 0
         self.titulo = titulo
         self.descricao = descricao
         self.user = user
@@ -12,13 +12,13 @@ class Chamado:
     
     @property
     def id(self) -> int:
-        return self._id
+        return self.__id
     
     @id.setter
     def id(self, id):
         if not isinstance(id, int):
             raise TypeError('O id deve ser inteiro')
-        self._id = id
+        self.__id = id
         
     @property
     def status(self) -> bool:

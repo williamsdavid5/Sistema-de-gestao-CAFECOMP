@@ -6,15 +6,13 @@ class Aviso:
                  subtitulo:str,
                  texto:str, 
                  data:str, 
-                 imagens:list[str] = None, 
-                 links:list[str] = None):
+                 imagens:str = None):
         self._id = 0
         self.titulo = titulo
         self.subtitulo = subtitulo
         self.texto = texto
-        self.data = data
-        self.imagens = imagens if not imagens == None else [] 
-        self.links = links if not links == None else []
+        self.date_time = data
+        self.imagens = imagens
 
     @property
     def id(self) -> int:
@@ -27,16 +25,16 @@ class Aviso:
         self._id = id
 
     @property
-    def data(self) -> str:
-        return self._data
+    def date_time(self) -> str:
+        return self.__date_time
     
-    @data.setter
-    def data(self, value):
+    @date_time.setter
+    def date_time(self, value):
         pattern = r'^(20|21)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$'
         if not re.match(pattern, value):
             raise ValueError('A data deve seguir o formato yyyy-mm-aa')
         
-        self._data = value
+        self.__date_time = value
 
     def to_dict(self) -> dict: 
         return {
@@ -44,7 +42,7 @@ class Aviso:
             'titulo':self.titulo,
             'subtitulo':self.subtitulo,
             'texto':self.texto,
-            'data':self.data,
+            'data':self.date_time,
             'imgens':self.imagens,
             'links':self.links,
         }
