@@ -7,9 +7,9 @@ INSERT INTO Transacao (categoria, valor, data_transacao, descricao, caminho_arqu
 VALUES (%s, %s, %s, %s, %s, %s)'''
 
 MURAL = '''
-INSERT INTO Mural (titulo, subtitulo, conteudo, data_publicacao, conteudo)
+INSERT INTO Mural (titulo, subtitulo, texto, data_publicacao, conteudo)
 VALUES (%s, %s, %s, %s, %s)''' 
 
 CHAMADO = '''
-INSERT INTO Chamado (descricao, status, nMatricula, data_criacao, data_atualizacao)
-VALUES (%s, %s, %s, %s, %s)'''
+INSERT INTO Chamado (descricao, status, nMatricula, data_criacao)
+VALUES (%s, %s, %s, %s)'''

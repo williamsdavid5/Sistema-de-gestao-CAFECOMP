@@ -45,12 +45,16 @@ def get_user_by_email(email:str):
 
         print("Conexão com o servidor MySQL estabelecida.")
 
+        cursor.execute(ddl.USE_DATABASE)
+        connection.commit()
         cursor.execute(select.USUARIO_EMAIL, (email,))
         result = cursor.fetchone()
 
         if result:
             privilegio = False
+            print('linha 55')
             cursor.execute(select.PRIVILEGIO, (result[0],))
+            print('linha 57')
             validar = cursor.fetchone()
             if validar:
                 privilegio = True
@@ -82,7 +86,7 @@ def get_user_by_matricula(n_matricula: str):
         cursor = connection.cursor()
 
         print("Conexão com o servidor MySQL estabelecida.")
-
+        cursor.execute(ddl.USE_DATABASE)
         cursor.execute(select.USUARIO, (n_matricula,))
         result = cursor.fetchone()
 
@@ -120,6 +124,7 @@ def inserir(sql: str, dados: tuple):
         cursor = connection.cursor()
 
         # Executar o comando SQL com placeholders
+        cursor.execute(ddl.USE_DATABASE)
         cursor.execute(sql, dados)
 
         # Confirmar as mudanças no banco de dados
