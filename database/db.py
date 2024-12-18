@@ -198,7 +198,7 @@ def get_chamados_by_matricula(dados):
             privilegio = True
         
         if privilegio:
-            cursor.execute(select.CHAMADOS_FROM_ADM, (dados,))
+            cursor.execute(select.CHAMADOS_FROM_ADM)
         else:
             cursor.execute(select.CHAMADO_BY_MATRICULA, (dados,))
 
