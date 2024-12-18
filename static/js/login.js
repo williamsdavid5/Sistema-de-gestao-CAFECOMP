@@ -75,6 +75,7 @@ async function verificarPrivilegio(email) {
 
             // Adiciona "membroCafecomp" no localStorage
             localStorage.setItem('membroCafecomp', 'true');
+            localStorage.setItem('usuario', JSON.stringify(userData));
         } else {
             console.log(`O usuário ${userData.nome} não tem privilégios.`);
         }

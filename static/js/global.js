@@ -54,6 +54,8 @@ function deslogar() {
         localStorage.removeItem('usuarioLogado');
         localStorage.removeItem('userId');
         localStorage.removeItem('membroCafecomp');
+        localStorage.removeItem('usuario');
+
         atualizarVisibilidadeBotoes(); // Atualiza a visibilidade dos botões
         window.location.href = '/login'; // Redireciona para a rota de login do Flask
     }).catch((error) => {
