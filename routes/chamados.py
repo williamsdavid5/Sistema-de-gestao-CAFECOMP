@@ -30,7 +30,7 @@ def novo_chamado(n_matricula):
         print(f'erro ao acessar os dados: {e}')
         return jsonify({'error': str(e)}), 500
     
-@chamados_route.route('/<string:n_matricula>/<int:id>')
+@chamados_route.route('/<string:n_matricula>/<string:id>')
 def get_chamado(n_matricula, id):
     ...
     

@@ -96,7 +96,7 @@ def get_user_by_matricula(n_matricula: str):
                 privilegio = True
 
             return {
-                'nMatricula': result[0],
+                'n_matricula': result[0],
                 'nome': result[1],
                 'email': result[2],
                 'privilegio': privilegio
@@ -139,3 +139,40 @@ def inserir(sql: str, dados: tuple):
             connection.close()
 
     return resultado
+
+def get_chamado(dados:tuple):
+    connection = None
+    try:
+        # Conectando ao servidor MySQL
+        connection = pymysql.connect(**config)
+        cursor = connection.cursor()
+
+        print("Conexão com o servidor MySQL estabelecida.")
+
+        cursor.execute(ddl.USE_DATABASE)
+        connection.commit()
+        cursor.execute(select.CHAMADO, (dados,))
+        result = cursor.fetchone()
+
+        if result:
+
+            return {
+                'id': result[0],
+                'descricao': result[2],
+                'titulo': result[1],
+                'user':result,
+                'datetime':result,
+                'status':result
+            }
+        else:
+            return {'error': 'chamado não encontrado'}
+
+    except pymysql.MySQLError as err:
+        print(f"Erro ao conectar ou executar SQL: {err}")
+
+    finally:
+        # Fechando conexão
+        if connection:
+            cursor.close()
+            connection.close()
+            print("Conexão com o MySQL encerrada.")

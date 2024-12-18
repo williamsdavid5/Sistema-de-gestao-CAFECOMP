@@ -3,13 +3,13 @@ import  re
 class Transacao:
     def __init__(self,
                  valor:float,
-                 data:str,
+                 datetime:str,
                  categoria:str,
                  comprovante:str, 
                  descricao:str=None):
         self.__id = 0
         self.valor = valor
-        self.date_time = data
+        self.date_time = datetime
         self.categoria = categoria
         self.comprovante = comprovante
         self.descricao = descricao

@@ -29,14 +29,14 @@ class Membro(User):
 
         return aviso
 
-    def criar_transacao(self, valor:float, data:str, categoria:str,
+    def criar_transacao(self, valor:float, datatime:str, categoria:str,
                         comprovante:str, descricao:str=None) -> Transacao:
          
         pattern = r'^(20|21)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$'
-        if not re.match(pattern, data):
+        if not re.match(pattern, datatime):
             raise ValueError('A data deve seguir o formato yyyy-mm-aa')
         
-        transacao = Transacao(valor, data, categoria, comprovante, descricao)
+        transacao = Transacao(valor, datatime, categoria, comprovante, descricao)
 
         return transacao
 
