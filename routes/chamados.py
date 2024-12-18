@@ -18,7 +18,7 @@ def novo_chamado(n_matricula):
         user_data = get_user_by_matricula(n_matricula)
         user = User(user_data['n_matricula'], user_data['nome'], user_data['email'], user_data['privilegio'])
 
-        chamado = user.criar_chamado(data['titulo'], data['descricao'], data['datetime'])
+        chamado = user.criar_chamado(data['titulo'], data['descricao'], data['data'])
         resultado = inserir(CHAMADO, (chamado.descricao, chamado.status, chamado.user, chamado.data))
 
         if resultado:
