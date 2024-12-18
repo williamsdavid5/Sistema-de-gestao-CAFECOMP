@@ -35,8 +35,6 @@ botaoEntrar.addEventListener('click', async (e) => {
         console.log("Login realizado com sucesso. Salvando estado no localStorage...");
         localStorage.setItem('usuarioLogado', 'true');
 
-        localStorage.setItem('userId', user.uid);
-
         await verificarPrivilegio(email);
 
         // Redireciona após salvar
@@ -75,10 +73,12 @@ async function verificarPrivilegio(email) {
 
             // Adiciona "membroCafecomp" no localStorage
             localStorage.setItem('membroCafecomp', 'true');
-            localStorage.setItem('usuario', JSON.stringify(userData));
+
         } else {
             console.log(`O usuário ${userData.nome} não tem privilégios.`);
         }
+
+        localStorage.setItem('usuario', JSON.stringify(userData));
 
         return userData.privilegio;
     } catch (error) {
