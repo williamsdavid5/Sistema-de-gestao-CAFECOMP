@@ -86,6 +86,7 @@ h1 {
     height: 25px;
     color: white;
     background-color: black;
+    display: none;
 }
 
 #publicarNoticia {

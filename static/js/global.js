@@ -53,6 +53,7 @@ function deslogar() {
         console.log("Usuário deslogado com sucesso");
         localStorage.removeItem('usuarioLogado');
         localStorage.removeItem('userId');
+        localStorage.removeItem('membroCafecomp');
         atualizarVisibilidadeBotoes(); // Atualiza a visibilidade dos botões
         window.location.href = '/login'; // Redireciona para a rota de login do Flask
     }).catch((error) => {
@@ -99,3 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// // Função para limpar os itens do localStorage ao fechar a aba
+// function limparLocalStorageAoFechar() {
+//     // Remove os itens específicos do localStorage
+//     localStorage.removeItem('usuarioLogado');
+//     localStorage.removeItem('userId');
+//     localStorage.removeItem('membroCafecomp');
+// }
+
+// // Adiciona o evento beforeunload para limpar o localStorage antes de a aba ser fechada
+// window.addEventListener('beforeunload', limparLocalStorageAoFechar);

@@ -35,3 +35,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+function verificarVisibilidadeBotaoRegistrarCaixa() {
+    const botaoRegistrarCaixa = document.getElementById('botaoRegistrarCaixa');
+
+    // Verifica se "membroCafecomp" existe no localStorage
+    if (localStorage.getItem('membroCafecomp') === 'true') {
+        // Se existir, torna o botão visível
+        if (botaoRegistrarCaixa) {
+            botaoRegistrarCaixa.style.display = 'block';
+        }
+    } else {
+        // Caso contrário, oculta o botão
+        if (botaoRegistrarCaixa) {
+            botaoRegistrarCaixa.style.display = 'none';
+        }
+    }
+}
+
+// Chama a função para verificar e ajustar a visibilidade do botão ao carregar a página
+document.addEventListener('DOMContentLoaded', verificarVisibilidadeBotaoRegistrarCaixa);

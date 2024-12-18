@@ -27,8 +27,6 @@ const mostrarErro = (mensagem) => {
 botaoConfirmar.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    cadastrarUsuario();
-
     const email = inputEmail.value;
     const senha = inputSenha.value;
     const confirmaSenha = inputConfirmaSenha.value;
@@ -49,6 +47,7 @@ botaoConfirmar.addEventListener('click', async (e) => {
         console.log("Usuário criado com sucesso:", user.email);
 
         // Redireciona para a página inicial após o cadastro usando a rota do Flask
+        cadastrarUsuario();
         window.location.href = '/'; // Altere a URL para a rota desejada
 
     } catch (error) {
@@ -82,16 +81,21 @@ botaoConfirmar.addEventListener('click', async (e) => {
 // Função para cadastrar o usuário
 async function cadastrarUsuario() {
 
-    // Define as informações do usuário diretamente no código
+    // Resgata os valores dos inputs
+    const nome = document.getElementById('inputNome').value;
+    const email = document.getElementById('inputEmail').value;
+    const matricula = document.getElementById('inputMatricula').value;
+
+    // Define o objeto usuario com os dados dos inputs
     const usuario = {
-        n_matricula: "123456", // Número de matrícula literal
-        nome: "seila",    // Nome literal
-        email: "seiLa@gmail.com" // Email literal
+        n_matricula: matricula,  // Número de matrícula resgatado
+        nome: nome,              // Nome resgatado
+        email: email             // Email resgatado
     };
 
     try {
         // Envia a solicitação POST para a rota Flask
-        const response = await fetch('/user-new', {
+        const response = await fetch('/cadastro/user-new', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -117,5 +121,3 @@ async function cadastrarUsuario() {
     }
 }
 
-// Chamada da função para cadastrar o usuário
-cadastrarUsuario(usuarioInfo);
