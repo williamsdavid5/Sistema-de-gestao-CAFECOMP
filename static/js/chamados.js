@@ -4,40 +4,122 @@ document.addEventListener('DOMContentLoaded', () => {
     // Verifica o login do usuário
     if (!verificarLoginLocal()) {
         console.warn("Usuário não está logado. Redirecionando para login.");
-        window.location.href = '/login';  // Redireciona para a rota de login do Flask
+        window.location.href = '/login'; // Redireciona para a rota de login do Flask
     }
 });
 
-// Exibe e esconde a div "novoChamado"
 document.addEventListener('DOMContentLoaded', () => {
     const botaoNovoChamado = document.getElementById('botaoNovoChamado');
-    const novoChamado = document.getElementById('novoChamado');
-    const botaoCancelar = document.getElementById('botaoCancelar');
+    const conteudo = document.getElementById('conteudo');
 
     botaoNovoChamado.addEventListener('click', () => {
-        novoChamado.style.display = 'flex';  // Mostra a div
-    });
+        // Adiciona o código HTML dinamicamente
+        const novoChamadoHtml = `
+            <div class="telaSobreposta flex" id="novoChamado">
+                <div class="janelaSobreposta">
+                    <h1>Novo chamado</h1>
+                    <input type="text" placeholder="Assunto" id="inputTitulo">
+                    <textarea name="" id="areaDescricao" placeholder="Descrição"></textarea>
+                    <button id="botaoEnviarChamado">Enviar</button>
+                    <button id="botaoCancelar">Cancelar</button>
+                    <p>Atenção: após enviar, não será possível desfazer!</p>
+                </div>
+            </div>
+        `;
+        conteudo.insertAdjacentHTML('beforeend', novoChamadoHtml);
 
-    botaoCancelar.addEventListener('click', () => {
-        novoChamado.style.display = 'none';  // Esconde a div
+        // Força o estilo display flex
+        const novoChamado = document.getElementById('novoChamado');
+        if (novoChamado) {
+            novoChamado.style.display = 'flex';
+        }
+
+        // Adiciona o evento de cancelar após inserir o HTML
+        document.getElementById('botaoCancelar').addEventListener('click', () => {
+            if (novoChamado) {
+                novoChamado.remove();
+            }
+        });
+
+        // Adiciona o evento de clique no botão "Enviar" após a inserção
+        document.getElementById('botaoEnviarChamado').addEventListener('click', async (e) => {
+            e.preventDefault(); // Previne o comportamento padrão do botão
+
+            const descricao = document.getElementById('areaDescricao').value;
+            const titulo = document.getElementById('inputTitulo').value;
+
+            // Recupera os dados do usuário armazenados no localStorage
+            const usuarioString = localStorage.getItem('usuario');
+            const usuario = usuarioString ? JSON.parse(usuarioString) : null;
+
+            if (!usuario) {
+                console.log('Nenhum usuário encontrado no localStorage.');
+                alert("Usuário não encontrado. Faça login novamente.");
+                return;
+            }
+
+            // Converte todas as propriedades do usuário para strings
+            const nome = String(usuario.nome || "");
+            const matricula = String(usuario.nMatricula || "");
+            const email = String(usuario.email || "");
+
+            // Monta o objeto do chamado
+            const chamado = {
+                titulo: String(titulo || ""),
+                descricao: String(descricao || ""),
+                user: nome,
+                matricula: matricula,
+                email: email,
+                data: new Date().toISOString().split('T')[0], // Formato yyyy-mm-dd
+            };
+
+            // Exibe os dados do chamado para depuração
+            console.log("Dados do chamado a ser enviado:", chamado);
+
+            // Exibe um alerta com o número de matrícula
+            alert(`Número de matrícula: ${matricula}`);
+
+            try {
+                const response = await fetch(`/chamados/new/${matricula}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(chamado),
+                });
+
+                if (response.ok) {
+                    console.log("Chamado criado com sucesso");
+                    alert("Chamado criado com sucesso");
+                    document.getElementById('novoChamado').remove(); // Remove a div após o sucesso
+                } else {
+                    console.log("Erro ao criar chamado");
+                    alert("Erro ao criar chamado. Tente novamente.");
+                }
+            } catch (error) {
+                console.error("Erro ao enviar os dados para o servidor:", error);
+                alert("Erro ao criar chamado. Tente novamente.");
+            }
+        });
+
     });
 });
 
 // Exibe a div "verChamado" quando qualquer botão de imagem for clicado
 document.addEventListener('DOMContentLoaded', () => {
-    const botoesImagem = document.querySelectorAll('.imagemBotao'); // Seleciona todos os elementos com a classe 'imagemBotao'
+    const botoesImagem = document.querySelectorAll('.imagemBotao');
     const verChamado = document.getElementById('verChamado');
     const botaoFechar = document.getElementById('botaoFechar');
 
     botoesImagem.forEach(botao => {
         botao.addEventListener('click', () => {
-            verChamado.style.display = 'flex'; // Mostra a div
+            verChamado.style.display = 'flex';
         });
     });
 
     if (botaoFechar) {
         botaoFechar.addEventListener('click', () => {
-            verChamado.style.display = 'none'; // Esconde a div
+            verChamado.style.display = 'none';
         });
     } else {
         console.error("Botão 'botaoFechar' não encontrado no DOM.");
@@ -60,69 +142,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const botaoEnviar = document.getElementById('botaoEnviarChamado');
-    const novoChamado = document.getElementById('novoChamado');
-
-    // Evento de clique no botão 'Enviar'
-    botaoEnviar.addEventListener('click', async (e) => {
-        e.preventDefault();  // Previne o comportamento padrão do botão
-
-        // Verifica se a div está visível (após o clique em "Novo Chamado")
-        if (novoChamado.style.display === 'none' || !novoChamado.style.display) {
-            console.error("A div 'novoChamado' não está visível.");
-            return;
-        }
-
-        // Acessa os inputs após a exibição da div
-        const descricao = document.getElementById('areaDescricao');
-        const titulo = document.getElementById('inputTitulo');
-
-        // Recupera os dados do usuário armazenados no localStorage
-        const usuarioString = localStorage.getItem('usuario');
-        const usuario = usuarioString ? JSON.parse(usuarioString) : null;
-
-        if (usuario === null) {
-            console.log('Nenhum usuário encontrado no localStorage.');
-            alert("Usuário não encontrado. Faça login novamente.");
-            return;
-        }
-
-        // Cria o objeto Chamado com os dados do formulário e do usuário
-        const chamado = {
-            titulo: 'titulo qualquer',
-            descricao: 'descricao',
-            user: usuario.nome, // Usando o nome do usuário armazenado
-            data: new Date().toISOString().split('T')[0], // Data atual no formato yyyy-mm-dd
-        };
-
-        // Exibe o objeto Chamado no console para verificação
-        console.log('Objeto Chamado:', chamado);
-
-        // Envia os dados do Chamado para o servidor via POST
-        try {
-            const response = await fetch(`/chamados/new/${usuario.n_matricula}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(chamado),
-            });
-
-            if (response.ok) {
-                console.log("Chamado criado com sucesso");
-                alert("Chamado criado com sucesso");
-                // Pode adicionar redirecionamento ou outra lógica aqui
-            } else {
-                console.log("Erro ao criar chamado");
-                alert("Erro ao criar chamado. Tente novamente.");
-            }
-        } catch (error) {
-            console.error("Erro ao enviar os dados para o servidor:", error);
-            alert("Erro ao criar chamado. Tente novamente.");
-        }
-    });
-});
-
