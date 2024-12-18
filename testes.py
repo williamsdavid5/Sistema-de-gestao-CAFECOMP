@@ -1,5 +1,5 @@
 from database import insert
-from database.db import inserir, get_user_by_email, get_user_by_matricula
+from database.db import executar_sql, get_user_by_email, get_user_by_matricula
 
 
 user = ('202133840007', 'José Maciel', 'mp6632333@gmail.com')

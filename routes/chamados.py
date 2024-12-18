@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, jsonify
 
 from src.chamado import Chamado
 from src.user import User
-from database.db import get_user_by_matricula, inserir, get_chamado_by_id, get_chamados_by_matricula
+from database.db import get_user_by_matricula, inserir, get_chamado_by_id, get_chamados_by_matricula, update_status_chamado
 from database.insert import CHAMADO
 
 chamados_route = Blueprint('chamados', __name__)
@@ -58,4 +58,14 @@ def get_all_chamados_from_user(n_matricula):
         print(f'erro ao acessar os dados: {e}')
         return jsonify({'error': str(e)}), 500
     
-# @chamados_route.route
+@chamados_route.route('<string:n_matricula>/<int:id>')
+def change_status_chamado(n_matricula, id):
+    try:
+        resultado = update_status_chamado(n_matricula, id)
+        if resultado:
+            return jsonify({'success': True}), 200
+        else:
+            return jsonify({'error': 'Falha ao Atualizar o status do chamado'}), 500
+    except Exception as e:
+        print(f'erro ao acessar os dados: {e}')
+        return jsonify({'error': str(e)}), 500

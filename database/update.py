@@ -1,0 +1,1 @@
+CHAMADO_STATUS = 'UPDATE Chamado SET status = TRUE WHERE id = %s;'

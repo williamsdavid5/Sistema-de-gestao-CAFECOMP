@@ -2,8 +2,8 @@ import pymysql  # type: ignore
 
 from database import ddl
 from database import select
-# Dicionario com as Configuações do MySQL {host, user password, port}
-from database.config_db import config
+from database import update
+from database.config_db import config # Dicionario com as Configuações do MySQL {host, user password, port}
 
 
 def init_db():
@@ -233,3 +233,38 @@ def get_chamados_by_matricula(dados):
             cursor.close()
             connection.close()
             print("Conexão com o MySQL encerrada.")
+
+def update_status_chamado(n_matricula:str, id:int):
+    resultado = True
+    try:
+        # Conectar ao banco de dados
+        connection = pymysql.connect(**config)
+        cursor = connection.cursor()
+
+        privilegio = False
+        cursor.execute(select.PRIVILEGIO, (n_matricula,))
+        validar = cursor.fetchone()
+        if validar:
+            privilegio = True
+        
+        
+        if privilegio:
+            cursor.execute(ddl.USE_DATABASE)
+            cursor.execute(update.CHAMADO_STATUS, (id,))
+        else:
+            resultado = False
+
+        # Confirmar as mudanças no banco de dados
+        connection.commit()
+
+        print("dados inseridos com sucesso!")
+    except pymysql.MySQLError as e:
+        print(f"Erro ao inserir dados: {e}")
+        resultado = False
+    finally:
+        # Fechar conexão
+        if connection:
+            cursor.close()
+            connection.close()
+
+    return resultado
