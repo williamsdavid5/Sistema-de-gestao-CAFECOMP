@@ -30,7 +30,7 @@ def novo_chamado(n_matricula):
         print(f'erro ao acessar os dados: {e}')
         return jsonify({'error': str(e)}), 500
     
-@chamados_route.route('/<string:id>')
+@chamados_route.route('id/<int:id>')
 def get_chamado(id):
     try:
         dados_chamado = get_chamado_by_id(id)
@@ -44,7 +44,7 @@ def get_chamado(id):
         print(f'erro ao acessar os dados: {e}')
         return jsonify({'error': str(e)}), 500
     
-@chamados_route.route('/<string:n_matricula>')
+@chamados_route.route('user/<string:n_matricula>')
 def get_all_chamados_from_user(n_matricula):
     try:
         dados_chamado = get_chamados_by_matricula(n_matricula)
@@ -58,4 +58,4 @@ def get_all_chamados_from_user(n_matricula):
         print(f'erro ao acessar os dados: {e}')
         return jsonify({'error': str(e)}), 500
     
-# @chamados_rou
+@chamados_route.route
