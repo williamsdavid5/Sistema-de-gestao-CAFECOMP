@@ -203,7 +203,6 @@ def get_chamados_by_matricula(dados):
             cursor.execute(select.CHAMADO_BY_MATRICULA, (dados,))
 
         # Executa a consulta
-        cursor.execute(select.CHAMADO_BY_MATRICULA, (dados,))
         results = cursor.fetchall()  # Recupera todas as linhas da consulta
 
         if results:
