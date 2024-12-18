@@ -140,7 +140,7 @@ def inserir(sql: str, dados: tuple):
 
     return resultado
 
-def get_chamado_by_id_matricula(dados:tuple):
+def get_chamado_by_id(dados:tuple):
     connection = None
     try:
         # Conectando ao servidor MySQL
@@ -177,3 +177,6 @@ def get_chamado_by_id_matricula(dados:tuple):
             cursor.close()
             connection.close()
             print("Conexão com o MySQL encerrada.")
+
+def get_chamado_by_matricula(dados:tuple):
+    ...

@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, jsonify
 
 from src.chamado import Chamado
 from src.user import User
-from database.db import get_user_by_matricula, inserir, get_chamado_by_id_matricula
+from database.db import get_user_by_matricula, inserir, get_chamado_by_id
 from database.insert import CHAMADO
 
 chamados_route = Blueprint('chamados', __name__)
@@ -31,9 +31,9 @@ def novo_chamado(n_matricula):
         return jsonify({'error': str(e)}), 500
     
 @chamados_route.route('/<string:id>')
-def get_chamado(n_matricula, id):
+def get_chamado(id):
     try:
-        dados_chamado = get_chamado_by_id_matricula((id))
+        dados_chamado = get_chamado_by_id(id)
 
         if 'error' in dados_chamado:
             return jsonify(dados_chamado), 404
@@ -46,4 +46,14 @@ def get_chamado(n_matricula, id):
     
 @chamados_route.route('/<string:n_matricula>')
 def get_all_chamados_from_user(n_matricula):
-    ...
+    try:
+        dados_chamado = get_chamado_by_id((n_matricula,))
+
+        if 'error' in dados_chamado:
+            return jsonify(dados_chamado), 404
+        else:
+            return jsonify(dados_chamado)
+        
+    except Exception as e:
+        print(f'erro ao acessar os dados: {e}')
+        return jsonify({'error': str(e)}), 500
