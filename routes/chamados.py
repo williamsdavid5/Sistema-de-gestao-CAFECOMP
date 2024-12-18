@@ -58,4 +58,4 @@ def get_all_chamados_from_user(n_matricula):
         print(f'erro ao acessar os dados: {e}')
         return jsonify({'error': str(e)}), 500
     
-@chamados_route.route
+# @chamados_route.route
