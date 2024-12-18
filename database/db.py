@@ -241,6 +241,10 @@ def update_status_chamado(n_matricula:str, id:int):
         connection = pymysql.connect(**config)
         cursor = connection.cursor()
 
+        # Seleciona o banco de dados
+        cursor.execute(ddl.USE_DATABASE)
+        connection.commit()
+
         privilegio = False
         cursor.execute(select.PRIVILEGIO, (n_matricula,))
         validar = cursor.fetchone()

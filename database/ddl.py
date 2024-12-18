@@ -41,7 +41,8 @@ CREATE TABLE IF NOT EXISTS Mural (
     subtitulo VARCHAR(255),
     texto TEXT NOT NULL,
     data_publicacao DATE NOT NULL,
-    conteudo BLOB
+    conteudo BLOB,
+    nome VARCHAR(100)
 );'''
 
 # Criação da tabela Chamado
