@@ -20,7 +20,7 @@ def novo_cadastro():
         if resultado:
             return jsonify({'success': True}), 200
         else:
-            return jsonify({'error': str(e)}), 500
+            return jsonify({'error': 'erro ao inserir no banco de dados'}), 500
 
     except Exception as e:
         print(f'erro ao acessar os dados: {e}')

@@ -11,7 +11,7 @@ chamados_route = Blueprint('chamados', __name__)
 def chamados():
     return render_template('chamados.html')
 
-@chamados_route.route('/new/user/<string:n_matricula>', methods=['POST'])
+@chamados_route.route('/new/<string:n_matricula>', methods=['POST'])
 def novo_chamado(n_matricula):
     try:
         data = request.get_json()
@@ -24,8 +24,13 @@ def novo_chamado(n_matricula):
         if resultado:
             return jsonify({'success': True}), 200
         else:
-            return jsonify({'error': str(e)}), 500
+            return jsonify({'error': 'Falha ao Criar o chamado'}), 500
 
     except Exception as e:
         print(f'erro ao acessar os dados: {e}')
         return jsonify({'error': str(e)}), 500
+    
+@chamados_route.route('/<string:n_matricula>/<int:id>')
+def get_chamado(n_matricula, id):
+    ...
+    

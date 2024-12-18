@@ -52,9 +52,7 @@ def get_user_by_email(email:str):
 
         if result:
             privilegio = False
-            print('linha 55')
             cursor.execute(select.PRIVILEGIO, (result[0],))
-            print('linha 57')
             validar = cursor.fetchone()
             if validar:
                 privilegio = True
