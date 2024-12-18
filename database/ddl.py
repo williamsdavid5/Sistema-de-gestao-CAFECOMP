@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS Transacao (
     id INT AUTO_INCREMENT PRIMARY KEY,
     categoria VARCHAR(100) NOT NULL,
     valor FLOAT NOT NULL,
-    data_transacao DATETIME NOT NULL,
+    data_transacao DATE NOT NULL,
     descricao TEXT,
     caminho_arquivo VARCHAR(50),
     arquivo BLOB
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS Mural (
     titulo VARCHAR(255) NOT NULL,
     subtitulo VARCHAR(255),
     texto TEXT NOT NULL,
-    data_publicacao DATETIME NOT NULL,
+    data_publicacao DATE NOT NULL,
     conteudo BLOB
 );'''
 
@@ -48,11 +48,12 @@ CREATE TABLE IF NOT EXISTS Mural (
 TABELA_CHAMADO = '''
 CREATE TABLE IF NOT EXISTS Chamado (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(50) NOT NULL,
     descricao TEXT NOT NULL,
     status BOOLEAN NOT NULL,
     nMatricula VARCHAR(25),
-    data_criacao DATETIME NOT NULL,
-    data_atualizacao DATETIME,
+    data_criacao DATE NOT NULL,
+    data_atualizacao DATE,
     FOREIGN KEY (nMatricula)
 		REFERENCES Usuario(nMatricula)
         ON DELETE CASCADE

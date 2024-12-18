@@ -140,7 +140,7 @@ def inserir(sql: str, dados: tuple):
 
     return resultado
 
-def get_chamado(dados:tuple):
+def get_chamado_by_id_matricula(dados:tuple):
     connection = None
     try:
         # Conectando ao servidor MySQL
@@ -158,11 +158,12 @@ def get_chamado(dados:tuple):
 
             return {
                 'id': result[0],
-                'descricao': result[2],
                 'titulo': result[1],
-                'user':result,
-                'datetime':result,
-                'status':result
+                'descricao': result[2],
+                'status':result[3],
+                'user':result[4],
+                'data_criacao':result[5],
+                'data_conclusao':result[6],
             }
         else:
             return {'error': 'chamado não encontrado'}
