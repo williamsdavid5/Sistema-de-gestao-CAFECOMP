@@ -23,11 +23,7 @@ def novo_cadastro():
         if resultado:
             return jsonify({'success': True}), 200
         else:
-<<<<<<< HEAD
-            return jsonify({'error': 'erro ao inserir no banco de dados'}), 500
-=======
-            return jsonify({'error': 'Erro ao inserir no banco de dados'}), 500
->>>>>>> 04035088d66ac41ecb775821bccc7c96250e7a9a
+            return jsonify({'error':'erro ao salvar o usuário no banco de dados'})
 
     except Exception as e:
         print(f'erro ao acessar os dados: {e}')
