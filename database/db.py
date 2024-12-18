@@ -140,7 +140,7 @@ def inserir(sql: str, dados: tuple):
 
     return resultado
 
-def get_chamado_by_id(dados:tuple):
+def get_chamado_by_id(dados):
     connection = None
     try:
         # Conectando ao servidor MySQL
@@ -151,7 +151,7 @@ def get_chamado_by_id(dados:tuple):
 
         cursor.execute(ddl.USE_DATABASE)
         connection.commit()
-        cursor.execute(select.CHAMADO, (dados,))
+        cursor.execute(select.CHAMADO_BY_ID, (dados,))
         result = cursor.fetchone()
 
         if result:
@@ -178,5 +178,48 @@ def get_chamado_by_id(dados:tuple):
             connection.close()
             print("Conexão com o MySQL encerrada.")
 
-def get_chamado_by_matricula(dados:tuple):
-    ...
+def get_chamados_by_matricula(dados):
+    connection = None
+    try:
+        # Conectando ao servidor MySQL
+        connection = pymysql.connect(**config)
+        cursor = connection.cursor()
+
+        print("Conexão com o servidor MySQL estabelecida.")
+
+        # Seleciona o banco de dados
+        cursor.execute(ddl.USE_DATABASE)
+        connection.commit()
+
+        # Executa a consulta
+        cursor.execute(select.CHAMADO_BY_MATRICULA, (dados,))
+        results = cursor.fetchall()  # Recupera todas as linhas da consulta
+
+        if results:
+            # Transforma os resultados em uma lista de dicionários
+            chamados = [
+                {
+                    'id': row[0],
+                    'titulo': row[1],
+                    'descricao': row[2],
+                    'status': row[3],
+                    'user': row[4],
+                    'data_criacao': row[5],
+                    'data_conclusao': row[6],
+                }
+                for row in results
+            ]
+            return chamados
+        else:
+            return {'error': 'Nenhum chamado encontrado para a matrícula informada'}
+
+    except pymysql.MySQLError as err:
+        print(f"Erro ao conectar ou executar SQL: {err}")
+        return {'error': str(err)}
+
+    finally:
+        # Fechando conexão
+        if connection:
+            cursor.close()
+            connection.close()
+            print("Conexão com o MySQL encerrada.")
