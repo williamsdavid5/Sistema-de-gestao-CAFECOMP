@@ -32,7 +32,7 @@ class Aviso:
     def date_time(self, value):
         pattern = r'^(20|21)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$'
         if not re.match(pattern, value):
-            raise ValueError('A data deve seguir o formato yyyy-mm-aa')
+            raise ValueError('A data deve seguir o formato yyyy-mm-dd')
         
         self.__date_time = value
 
@@ -44,5 +44,4 @@ class Aviso:
             'texto':self.texto,
             'data':self.date_time,
             'imgens':self.imagens,
-            'links':self.links,
         }

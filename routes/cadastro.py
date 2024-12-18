@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify
 
 from src.user import User
-from database.db import executar_sql
+from database.db import inserir
 from database.insert import USUARIO
 
 cadasto_route = Blueprint('cadastro', __name__)
@@ -17,8 +17,9 @@ def novo_cadastro():
     try:
         data = request.get_json()
 
-        resultado = executar_sql(
-            USUARIO, (data['n_matricula'], data['nome'], data['email']))
+        resultado = inserir(
+            USUARIO, (data['n_matricula'], data['nome'], data['email'])
+        )
 
         if resultado:
             return jsonify({'success': True}), 200
