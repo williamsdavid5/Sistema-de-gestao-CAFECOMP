@@ -191,6 +191,17 @@ def get_chamados_by_matricula(dados):
         cursor.execute(ddl.USE_DATABASE)
         connection.commit()
 
+        privilegio = False
+        cursor.execute(select.PRIVILEGIO, (dados,))
+        validar = cursor.fetchone()
+        if validar:
+            privilegio = True
+        
+        if privilegio:
+            cursor.execute(select.CHAMADOS_FROM_ADM, (dados,))
+        else:
+            cursor.execute(select.CHAMADO_BY_MATRICULA, (dados,))
+
         # Executa a consulta
         cursor.execute(select.CHAMADO_BY_MATRICULA, (dados,))
         results = cursor.fetchall()  # Recupera todas as linhas da consulta
