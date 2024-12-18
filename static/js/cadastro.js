@@ -27,6 +27,8 @@ const mostrarErro = (mensagem) => {
 botaoConfirmar.addEventListener('click', async (e) => {
     e.preventDefault();
 
+    cadastrarUsuario();
+
     const email = inputEmail.value;
     const senha = inputSenha.value;
     const confirmaSenha = inputConfirmaSenha.value;
@@ -72,3 +74,48 @@ botaoConfirmar.addEventListener('click', async (e) => {
         mostrarErro(mensagemErro);
     }
 });
+
+
+
+
+
+// Função para cadastrar o usuário
+async function cadastrarUsuario() {
+
+    // Define as informações do usuário diretamente no código
+    const usuario = {
+        n_matricula: "123456", // Número de matrícula literal
+        nome: "seila",    // Nome literal
+        email: "seiLa@gmail.com" // Email literal
+    };
+
+    try {
+        // Envia a solicitação POST para a rota Flask
+        const response = await fetch('/user-new', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(usuario),
+        });
+
+        // Verifica a resposta
+        if (response.ok) {
+            const result = await response.json();
+            if (result.success) {
+                alert('Usuário cadastrado com sucesso!');
+            } else {
+                alert(`Erro ao cadastrar usuário: ${result.error}`);
+            }
+        } else {
+            const errorMessage = await response.text();
+            alert(`Erro ao cadastrar usuário: ${errorMessage}`);
+        }
+    } catch (error) {
+        console.error('Erro ao enviar a solicitação:', error);
+        alert('Erro ao cadastrar usuário. Por favor, tente novamente.');
+    }
+}
+
+// Chamada da função para cadastrar o usuário
+cadastrarUsuario(usuarioInfo);
