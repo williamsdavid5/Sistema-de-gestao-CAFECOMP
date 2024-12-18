@@ -1,5 +1,6 @@
 from src.aviso import Aviso
-
+from database.db import inserir
+from database.insert import MURAL
 
 from flask import Blueprint, render_template, jsonify, request
 
@@ -17,8 +18,10 @@ def nova_noticia(matricula:str):
 
         imagem_bin = None
         # Ler o arquivo como binário
-        # with open(arquivo_path, 'rb') as file:
-        #     blob_data = file.read()
+        with open(news.imagens, 'rb') as file:
+            imagem_bin = file.read()
+        
+        inserir(MURAL, (news.titulo, news.subtitulo, news.texto, news.data, ))
 
     except Exception as e:
         print(f'erro ao cadastrar aviso: {e}')

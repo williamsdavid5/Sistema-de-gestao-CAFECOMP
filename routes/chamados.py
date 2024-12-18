@@ -58,7 +58,7 @@ def get_all_chamados_from_user(n_matricula):
         print(f'erro ao acessar os dados: {e}')
         return jsonify({'error': str(e)}), 500
     
-@chamados_route.route('<string:n_matricula>/<int:id>')
+@chamados_route.route('/<string:n_matricula>/<int:id>', methods=['PUT'])
 def change_status_chamado(n_matricula, id):
     try:
         resultado = update_status_chamado(n_matricula, id)
