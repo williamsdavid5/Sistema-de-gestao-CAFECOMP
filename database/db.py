@@ -268,3 +268,4 @@ def update_status_chamado(n_matricula:str, id:int):
             connection.close()
 
     return resultado
+

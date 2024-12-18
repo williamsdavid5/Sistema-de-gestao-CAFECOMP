@@ -107,43 +107,124 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Exibe a div "verChamado" quando qualquer botão de imagem for clicado
-document.addEventListener('DOMContentLoaded', () => {
-    const botoesImagem = document.querySelectorAll('.imagemBotao');
-    const verChamado = document.getElementById('verChamado');
-    const botaoFechar = document.getElementById('botaoFechar');
 
-    botoesImagem.forEach(botao => {
-        botao.addEventListener('click', () => {
+document.addEventListener('DOMContentLoaded', () => {
+    const conteudo = document.getElementById('conteudo'); // Elemento que contém os chamados
+    const verChamado = document.getElementById('verChamado'); // Div oculta para exibir o chamado
+    const botaoFechar = document.getElementById('botaoFechar'); // Botão para fechar a div de visualização
+
+    // Adiciona evento para capturar cliques nos chamados
+    conteudo.addEventListener('click', async (event) => {
+        const chamadoDiv = event.target.closest('.chamado');
+        if (!chamadoDiv) return; // Ignora cliques fora dos chamados
+
+        const chamadoIdMatch = chamadoDiv.className.match(/id-(\d+)/);
+        const chamadoId = chamadoIdMatch ? chamadoIdMatch[1] : null;
+
+        if (!chamadoId) {
+            console.error('ID do chamado não encontrado.');
+            return;
+        }
+
+        // Armazena o ID e o número de matrícula do chamado no localStorage
+        try {
+            const response = await fetch(`/chamados/id/${chamadoId}`);
+            if (!response.ok) throw new Error('Erro ao buscar chamado.');
+
+            const chamado = await response.json();
+            if (chamado.error) throw new Error(chamado.error);
+
+            // Armazena o número de matrícula no localStorage
+            localStorage.setItem('matriculaChamado', chamado.user);
+
+            // Armazena o ID do chamado no localStorage
+            localStorage.setItem('chamadoSelecionado', chamadoId);
+
+            // Atualiza os dados da div de visualização
+            verChamado.querySelector('h2').textContent = `Assunto: ${chamado.titulo}`;
+            verChamado.querySelector('.textBold').textContent = chamado.user;
+            verChamado.querySelector('p:nth-of-type(2)').textContent = chamado.email;
+            verChamado.querySelector('#descricaoChamado').textContent = `Descrição: ${chamado.descricao}`;
+            verChamado.querySelector('#statusChamado').textContent = chamado.status ? 'Resolvido' : 'Pendente';
+            verChamado.querySelector('#statusChamado').className = chamado.status ? 'resolvido' : 'pendente';
+
+            // Exibe a div de visualização
             verChamado.style.display = 'flex';
-        });
+        } catch (error) {
+            console.error('Erro ao carregar o chamado:', error);
+            alert('Erro ao carregar o chamado. Tente novamente.');
+        }
     });
 
-    if (botaoFechar) {
-        botaoFechar.addEventListener('click', () => {
-            verChamado.style.display = 'none';
+    // Adiciona evento para fechar a div de visualização
+    botaoFechar.addEventListener('click', () => {
+        // Remove o ID e o número de matrícula do localStorage
+        localStorage.removeItem('chamadoSelecionado');
+        localStorage.removeItem('matriculaChamado');
+
+        verChamado.style.display = 'none';
+    });
+});
+
+// Evento para atualizar o status do chamado
+statusChamado.addEventListener('click', async () => {
+    // Recupera o ID do chamado e a matrícula armazenados no localStorage
+    const chamadoIdLocal = localStorage.getItem('chamadoSelecionado');
+    const matriculaChamado = localStorage.getItem('matriculaChamado');
+
+    if (!chamadoIdLocal || !matriculaChamado) {
+        console.error('ID do chamado ou matrícula não encontrados no localStorage.');
+        return;
+    }
+
+    // Converte o ID do chamado para inteiro
+    const chamadoId = parseInt(chamadoIdLocal, 10);  // Convertendo a string para número inteiro
+
+    if (isNaN(chamadoId)) {
+        console.error('ID do chamado não é um número válido.');
+        return;
+    }
+
+    // Alterna o status no frontend
+    const isResolvido = statusChamado.textContent === 'Resolvido';
+    statusChamado.textContent = isResolvido ? 'Pendente' : 'Resolvido';
+    statusChamado.classList.toggle('pendente', isResolvido);
+    statusChamado.classList.toggle('resolvido', !isResolvido);
+
+    // Envia a atualização ao backend com a matrícula correta do chamado
+    try {
+        const response = await fetch(`/chamados/id/${chamadoId}`);
+        if (!response.ok) throw new Error('Erro ao buscar chamado.');
+
+        const chamado = await response.json();
+        if (chamado.error) throw new Error(chamado.error);
+
+        // Envia a atualização do status
+        const updateResponse = await fetch(`/chamados/${matriculaChamado}/${chamadoId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         });
-    } else {
-        console.error("Botão 'botaoFechar' não encontrado no DOM.");
+
+        if (updateResponse.ok) {
+            console.log('Status do chamado atualizado com sucesso.');
+        } else {
+            console.error('Falha ao atualizar o status do chamado.');
+            alert('Erro ao atualizar o status. Tente novamente. A');
+        }
+    } catch (error) {
+        console.error('Erro ao enviar a atualização do status:', error);
+        alert('Erro ao atualizar o status. Tente novamente. B');
     }
 });
 
-// Altera o status do chamado entre 'Pendente' e 'Resolvido'
-document.addEventListener('DOMContentLoaded', () => {
-    const statusChamado = document.getElementById('statusChamado');
 
-    statusChamado.addEventListener('click', () => {
-        if (statusChamado.textContent === 'Pendente') {
-            statusChamado.textContent = 'Resolvido';
-            statusChamado.classList.remove('pendente');
-            statusChamado.classList.add('resolvido');
-        } else {
-            statusChamado.textContent = 'Pendente';
-            statusChamado.classList.remove('resolvido');
-            statusChamado.classList.add('pendente');
-        }
-    });
-});
+
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // Obtém o número de matrícula do usuário, por exemplo, do localStorage
@@ -157,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Garantir que o número de matrícula seja tratado como string
-    const matricula = String(usuario.nMatricula);  // Transformando em string
+    const matricula = String(usuario.nMatricula);
 
     // Faz a requisição para pegar os chamados do usuário
     fetch(`/chamados/user/${matricula}`)
@@ -181,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Criando o objeto HTML para cada chamado
                     const chamadoDiv = document.createElement('div');
-                    chamadoDiv.classList.add('chamado', 'imagemBotao');
+                    chamadoDiv.classList.add('chamado', 'imagemBotao', `id-${chamado.id}`); // Adiciona o ID do chamado como classe
 
                     // Criando o conteúdo do chamado
                     chamadoDiv.innerHTML = `
@@ -203,3 +284,4 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Erro ao obter os chamados:', error);
         });
 });
+
