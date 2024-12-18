@@ -11,5 +11,5 @@ INSERT INTO Mural (titulo, subtitulo, texto, data_publicacao, conteudo)
 VALUES (%s, %s, %s, %s, %s)''' 
 
 CHAMADO = '''
-INSERT INTO Chamado (descricao, status, nMatricula, data_criacao)
-VALUES (%s, %s, %s, %s)'''
+INSERT INTO Chamado (titulo, descricao, status, nMatricula, data_criacao)
+VALUES (%s, %s, %s, %s, %s)'''

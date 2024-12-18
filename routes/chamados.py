@@ -19,7 +19,7 @@ def novo_chamado(n_matricula):
         user = User(user_data['n_matricula'], user_data['nome'], user_data['email'], user_data['privilegio'])
 
         chamado = user.criar_chamado(data['titulo'], data['descricao'], data['data'])
-        resultado = inserir(CHAMADO, (chamado.descricao, chamado.status, chamado.user, chamado.data))
+        resultado = inserir(CHAMADO, (chamado.titulo ,chamado.descricao, chamado.status, chamado.user, chamado.data))
 
         if resultado:
             return jsonify({'success': True}), 200
