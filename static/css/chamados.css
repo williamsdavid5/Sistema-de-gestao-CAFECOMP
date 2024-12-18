@@ -121,3 +121,7 @@ h3 {
 #statusChamado:active {
     transform: scale(0.98);
 }
+
+#chamadosDiv {
+    min-height: 55vh;
+}
