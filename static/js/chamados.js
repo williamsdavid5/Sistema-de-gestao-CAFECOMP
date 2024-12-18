@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Adiciona o evento de clique no botão "Enviar" após a inserção
         document.getElementById('botaoEnviarChamado').addEventListener('click', async (e) => {
             e.preventDefault(); // Previne o comportamento padrão do botão
 
@@ -76,9 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Exibe os dados do chamado para depuração
             console.log("Dados do chamado a ser enviado:", chamado);
 
-            // Exibe um alerta com o número de matrícula
-            alert(`Número de matrícula: ${matricula}`);
-
             try {
                 const response = await fetch(`/chamados/new/${matricula}`, {
                     method: 'POST',
@@ -91,7 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     console.log("Chamado criado com sucesso");
                     alert("Chamado criado com sucesso");
-                    document.getElementById('novoChamado').remove(); // Remove a div após o sucesso
+
+                    // Remove a div de novo chamado
+                    document.getElementById('novoChamado').remove();
+
+                    // Recarrega a página para exibir os dados atualizados
+                    location.reload();
                 } else {
                     console.log("Erro ao criar chamado");
                     alert("Erro ao criar chamado. Tente novamente.");
@@ -101,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert("Erro ao criar chamado. Tente novamente.");
             }
         });
+
 
     });
 });
@@ -141,4 +143,63 @@ document.addEventListener('DOMContentLoaded', () => {
             statusChamado.classList.add('pendente');
         }
     });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Obtém o número de matrícula do usuário, por exemplo, do localStorage
+    const usuarioString = localStorage.getItem('usuario');
+    const usuario = usuarioString ? JSON.parse(usuarioString) : null;
+
+    if (!usuario) {
+        console.log('Usuário não encontrado no localStorage.');
+        alert("Usuário não encontrado. Faça login novamente.");
+        return;
+    }
+
+    // Garantir que o número de matrícula seja tratado como string
+    const matricula = String(usuario.nMatricula);  // Transformando em string
+
+    // Faz a requisição para pegar os chamados do usuário
+    fetch(`/chamados/user/${matricula}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Falha ao buscar chamados.');
+            }
+            return response.json();
+        })
+        .then(chamados => {
+            if (chamados.error) {
+                console.error(chamados.error);
+                alert("Erro ao obter os chamados.");
+            } else {
+                // Se não houver erro, vamos criar o HTML e inserir na página
+                const conteudo = document.getElementById('chamadosDiv');
+
+                chamados.forEach(chamado => {
+                    // Verifica e formata a data
+                    const dataFormatada = chamado.data_criacao ? new Date(chamado.data_criacao).toLocaleDateString('pt-BR') : 'Data não disponível';
+
+                    // Criando o objeto HTML para cada chamado
+                    const chamadoDiv = document.createElement('div');
+                    chamadoDiv.classList.add('chamado', 'imagemBotao');
+
+                    // Criando o conteúdo do chamado
+                    chamadoDiv.innerHTML = `
+                        <div class="textoChamado">
+                            <h3>Assunto: ${chamado.titulo}</h3>
+                            <p>${dataFormatada}</p>
+                        </div>
+                        <div class="statusChamado ${chamado.status ? 'resolvido' : 'pendente'}">
+                            <h2>${chamado.status ? 'Resolvido' : 'Pendente'}</h2>
+                        </div>
+                    `;
+
+                    // Adiciona o novo chamado na div 'conteudo'
+                    conteudo.appendChild(chamadoDiv);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao obter os chamados:', error);
+        });
 });

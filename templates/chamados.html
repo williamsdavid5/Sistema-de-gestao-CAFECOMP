@@ -51,144 +51,55 @@
             <button id="botaoNovoChamado">Novo chamado</button>
         </div>
 
-        <!-- Chamados pendentes -->
-        <div class="chamado imagemBotao">
-            <div class="textoChamado">
-                <h3>Assunto: Dificuldade para acessar o material do evento </h3>
-                <p>06/12/2024 - 19:30</p>
-            </div>
-            <div class="statusChamado pendente">
-                <h2>Pendente</h2>
+        <div id="chamadosDiv">
+
+        </div>
+
+
+        <div class="telaSobreposta" id="verChamado">
+            <div class="janelaSobreposta">
+                <h2>Assunto: falha ao tentar relizar a inscrição no evento</h2>
+                <p class="textBold">Jose Raimundo Maciel</p>
+                <p>joseRaimundoGay24@gmail.com</p>
+                <p id="descricaoChamado">Descrição: Ao tentar realizar a inscrição no evento "Semana Acadêmica de
+                    Engenharia", o sistema
+                    apresenta uma mensagem de erro ao carregar a página de pagamento. Já tentei utilizar outros
+                    navegadores e dispositivos, mas o problema persiste. Preciso de ajuda para finalizar a inscrição
+                    antes do prazo.</p>
+                <h2 id="statusChamado" class="pendente">Pendente</h2>
+                <button id="botaoEnviar">Salvar</button>
+                <button id="botaoFechar">Fechar</button>
+                <p>Atenção: após enviar, não será possível desfazer!</p>
             </div>
         </div>
 
-        <div class="chamado imagemBotao">
-            <div class="textoChamado">
-                <h3>Assunto: Não consigo acessar o fórum de discussões</h3>
-                <p>05/12/2024 - 18:45</p>
+        <!-- fim de pagina -->
+        <div id="fimDePagina">
+            <div id="iconeUfpa">
+                <img src="../static/img/ufpaIcon.png" alt="">
             </div>
-            <div class="statusChamado pendente">
-                <h2>Pendente</h2>
+            <div id="texto">
+                <h1>CAFECOMP</h1>
+                <P>Centro acadêmico de Engenharia de Computação “Janderson Souza“
+                    <br>Universidade Federal do Pará
+                    <br>Campus Universitário de Tucuruí
+                </P>
+                <div id="icons">
+                    <a href="https://www.instagram.com/cafecompcamtuc/">
+                        <img src="../static/img/instagram.png" alt="" class="imagemBotao">
+                    </a>
+                    <a href="mailto:cafecompcamtuc@gmail.com">
+                        <img src="../static/img/gmail.png" alt="" class="imagemBotao">
+                    </a>
+                </div>
             </div>
-        </div>
-
-        <div class="chamado imagemBotao">
-            <div class="textoChamado">
-                <h3>Assunto: Falha no pagamento da inscrição</h3>
-                <p>03/12/2024 - 19:20</p>
-            </div>
-            <div class="statusChamado pendente">
-                <h2>Pendente</h2>
-            </div>
-        </div>
-
-        <!-- Chamados em análise -->
-        <div class="chamado imagemBotao">
-            <div class="textoChamado">
-                <h3>Assunto: Problema ao realizar inscrição no evento</h3>
-                <p>06/12/2024 - 15:05</p>
-            </div>
-            <div class="statusChamado em-analise">
-                <h2>Em Análise</h2>
+            <div id="iconeCamtuc">
+                <img src="../static/img/camtucIcon.png" alt="">
             </div>
         </div>
 
-        <div class="chamado imagemBotao">
-            <div class="textoChamado">
-                <h3>Assunto: Solicitação de material extra para o curso</h3>
-                <p>04/12/2024 - 13:33</p>
-            </div>
-            <div class="statusChamado em-analise">
-                <h2>Em Análise</h2>
-            </div>
-        </div>
-
-        <div class="chamado imagemBotao">
-            <div class="textoChamado">
-                <h3>Assunto: Dificuldade em acessar o conteúdo gravado</h3>
-                <p>02/12/2024 - 17:40</p>
-            </div>
-            <div class="statusChamado em-analise">
-                <h2>Em Análise</h2>
-            </div>
-        </div>
-
-        <!-- Chamados resolvidos -->
-        <div class="chamado imagemBotao">
-            <div class="textoChamado">
-                <h3>Assunto: Dúvidas sobre o conteúdo do evento</h3>
-                <p>05/12/2024 - 22:12</p>
-            </div>
-            <div class="statusChamado resolvido">
-                <h2>Resolvido</h2>
-            </div>
-        </div>
-
-        <div class="chamado imagemBotao">
-            <div class="textoChamado">
-                <h3>Assunto: Pedido de alteração na agenda do evento</h3>
-                <p>04/12/2024 - 09:00</p>
-            </div>
-            <div class="statusChamado resolvido">
-                <h2>Resolvido</h2>
-            </div>
-        </div>
-
-        <div class="chamado imagemBotao">
-            <div class="textoChamado">
-                <h3>Assunto: Questionamento sobre o horário das palestras</h3>
-                <p>01/12/2024 - 12:00</p>
-            </div>
-            <div class="statusChamado resolvido">
-                <h2>Resolvido</h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="telaSobreposta" id="verChamado">
-        <div class="janelaSobreposta">
-            <h2>Assunto: falha ao tentar relizar a inscrição no evento</h2>
-            <p class="textBold">Jose Raimundo Maciel</p>
-            <p>joseRaimundoGay24@gmail.com</p>
-            <p id="descricaoChamado">Descrição: Ao tentar realizar a inscrição no evento "Semana Acadêmica de
-                Engenharia", o sistema
-                apresenta uma mensagem de erro ao carregar a página de pagamento. Já tentei utilizar outros
-                navegadores e dispositivos, mas o problema persiste. Preciso de ajuda para finalizar a inscrição
-                antes do prazo.</p>
-            <h2 id="statusChamado" class="pendente">Pendente</h2>
-            <button id="botaoEnviar">Salvar</button>
-            <button id="botaoFechar">Fechar</button>
-            <p>Atenção: após enviar, não será possível desfazer!</p>
-        </div>
-    </div>
-
-    <!-- fim de pagina -->
-    <div id="fimDePagina">
-        <div id="iconeUfpa">
-            <img src="../static/img/ufpaIcon.png" alt="">
-        </div>
-        <div id="texto">
-            <h1>CAFECOMP</h1>
-            <P>Centro acadêmico de Engenharia de Computação “Janderson Souza“
-                <br>Universidade Federal do Pará
-                <br>Campus Universitário de Tucuruí
-            </P>
-            <div id="icons">
-                <a href="https://www.instagram.com/cafecompcamtuc/">
-                    <img src="../static/img/instagram.png" alt="" class="imagemBotao">
-                </a>
-                <a href="mailto:cafecompcamtuc@gmail.com">
-                    <img src="../static/img/gmail.png" alt="" class="imagemBotao">
-                </a>
-            </div>
-        </div>
-        <div id="iconeCamtuc">
-            <img src="../static/img/camtucIcon.png" alt="">
-        </div>
-    </div>
-
-    <script type="module" src="../static/js/global.js"></script>
-    <script type="module" src="../static/js/chamados.js"></script>
+        <script type="module" src="../static/js/global.js"></script>
+        <script type="module" src="../static/js/chamados.js"></script>
 </body>
 
 </html>
