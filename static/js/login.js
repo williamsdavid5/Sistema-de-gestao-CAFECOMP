@@ -34,7 +34,10 @@ botaoEntrar.addEventListener('click', async (e) => {
         // Salvar login no localStorage
         console.log("Login realizado com sucesso. Salvando estado no localStorage...");
         localStorage.setItem('usuarioLogado', 'true');
+
         localStorage.setItem('userId', user.uid);
+
+        await verificarPrivilegio(email);
 
         // Redireciona após salvar
         window.location.href = '/';  // Redireciona para a home (rota home_route)
@@ -48,3 +51,40 @@ const botaoCadastro = document.getElementById('botaoNaoPossuoUmaConta');
 botaoCadastro.addEventListener('click', () => {
     window.location.href = '/cadastro';  // Redireciona para a rota de cadastro (cadasto_route)
 });
+
+
+
+
+
+async function verificarPrivilegio(email) {
+    try {
+        // Faz a requisição para a rota Flask
+        const response = await fetch(`/login/user/${email}`);
+
+        // Verifica se a resposta foi bem-sucedida
+        if (!response.ok) {
+            throw new Error(`Erro ao buscar usuário: ${response.statusText}`);
+        }
+
+        // Converte a resposta para JSON
+        const userData = await response.json();
+
+        // Verifica o privilégio do usuário
+        if (userData.privilegio) {
+            console.log(`O usuário ${userData.nome} tem privilégios.`);
+
+            // Adiciona "membroCafecomp" no localStorage
+            localStorage.setItem('membroCafecomp', 'true');
+            localStorage.setItem('usuario', JSON.stringify(userData));
+        } else {
+            console.log(`O usuário ${userData.nome} não tem privilégios.`);
+        }
+
+        return userData.privilegio;
+    } catch (error) {
+        console.error("Erro ao verificar privilégio do usuário:", error.message);
+        alert("Erro ao buscar usuário. Por favor, tente novamente.");
+        return null;
+    }
+}
+
