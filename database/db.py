@@ -251,7 +251,6 @@ def update_status_chamado(n_matricula:str, id:int):
         if validar:
             privilegio = True
         
-        
         if privilegio:
             cursor.execute(ddl.USE_DATABASE)
             cursor.execute(update.CHAMADO_STATUS, (id,))
